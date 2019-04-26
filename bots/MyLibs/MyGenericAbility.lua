@@ -14,8 +14,8 @@ MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")
 MyGenericAbility.TARGET_NONE = 0;
 MyGenericAbility.TARGET_LOCATION = 1;
 MyGenericAbility.TARGET_UNIT = 2;
-MyGenericAbility.TARGET_TREE = 3;
---MyGenericAbility.TARGET_UNIT_BUILDING = 3;
+MyGenericAbility.TARGET_UNIT_BUILDING = 3;
+MyGenericAbility.TARGET_TREE = 4;
 
 -- const = {};
 
@@ -64,7 +64,7 @@ function MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const )
 end
 
 
-function MyGenericAbility.ConsiderAbility_Mode( ability, mode, const, bBuilding )
+function MyGenericAbility.ConsiderAbility_Mode( ability, mode, const )
 	local npcBot = GetBot();	
 	
 	--if(range==nil)then  
@@ -81,7 +81,7 @@ function MyGenericAbility.ConsiderAbility_Mode( ability, mode, const, bBuilding 
 	
 	-- Target :
 	local npcTarget = npcBot:GetTarget();
-	if ( npcTarget ~= nil  and   not (npcTarget:IsBuilding() and bBuilding~=true) ) then
+	if ( npcTarget ~= nil  and   not (npcTarget:IsBuilding() and mode ~= MyGenericAbility.TARGET_UNIT_BUILDING) ) then
 		if ( CanCastAbilityOnTarget( npcTarget ) )then
 			local ennemyHP = npcTarget:GetHealth();
 			if(ennemyHP > 0  and  GetUnitToLocationDistance(npcBot, npcTarget:GetLocation()) < range) then   --and  ennemyHP < npcTarget:GetMaxHealth()*0.5
@@ -96,7 +96,7 @@ function MyGenericAbility.ConsiderAbility_Mode( ability, mode, const, bBuilding 
 					npcBot:Action_UseAbility( ability ); 
 					return true; 
 				end
-				if(mode == MyGenericAbility.TARGET_UNIT)then   -- or  mode == MyGenericAbility.TARGET_UNIT_BUILDING
+				if(mode == MyGenericAbility.TARGET_UNIT  or  mode == MyGenericAbility.TARGET_UNIT_BUILDING)then   
 					npcBot:Action_UseAbilityOnEntity( ability, npcTarget ); 
 					return true; 
 				end

@@ -40,7 +40,7 @@ contexts = {};
 -- special_bonus_magic_resistance_12
 -- special_bonus_hp_700
 -- special_bonus_unique_tusk
-abilitiesEarlyLvls = {  };
+abilitiesEarlyLvls = { "tusk_ice_shards", "tusk_snowball",  "tusk_tag_team" };
 abilitiesPriority = {  "tusk_walrus_punch",  "tusk_ice_shards", "tusk_snowball",  "tusk_tag_team"};
 AoeID = "TUSK_Q";
 -- AoeID2 = "LINA_W";
@@ -81,6 +81,11 @@ abilityList_Basic = {
 	{
 		["NAME"]="tusk_snowball",
 		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+	},
+	["E"]=
+	{
+		["NAME"]="tusk_tag_team",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
 	},
 	["R"]=
 	{

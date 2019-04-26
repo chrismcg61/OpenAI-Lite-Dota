@@ -38,7 +38,7 @@ contexts = {};
 -- special_bonus_magic_resistance_20
 -- special_bonus_attack_range_100
 -- special_bonus_unique_windranger
-abilitiesEarlyLvls = { "windrunner_powershot", "windrunner_shackleshot", "windrunner_powershot", "windrunner_windrun", };
+abilitiesEarlyLvls = { "windrunner_powershot", "windrunner_shackleshot", "windrunner_windrun", };
 abilitiesPriority = {  "windrunner_focusfire",  "windrunner_powershot", "windrunner_windrun", "windrunner_shackleshot",  };
 AoeID = "WIND_W";
 -- AoeID2 = "LINA_W";
@@ -93,7 +93,7 @@ abilityList_Basic = {
 };
 
 MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const );
-const["defaultRange"] = 600;
+const["defaultRange"] = 900;
 
 
 
