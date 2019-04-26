@@ -26,78 +26,69 @@ contexts = {};
 ------------------------------------------------------------
 --- Hero CONSTS
 ------------------------------------------------------------
--- lina_dragon_slave
--- lina_light_strike_array
--- lina_fiery_soul
--- lina_laguna_blade
--- special_bonus_unique_lina_3
--- special_bonus_respawn_reduction_30
+-- earthshaker_fissure
+-- earthshaker_enchant_totem
+-- earthshaker_aftershock
+-- earthshaker_echo_slam
+-- special_bonus_strength_10
+-- special_bonus_mp_250
+-- special_bonus_movement_speed_20
 -- special_bonus_attack_damage_50
--- special_bonus_cast_range_125
--- special_bonus_spell_amplify_6
--- special_bonus_attack_range_150
--- special_bonus_unique_lina_1
--- special_bonus_unique_lina_2
-abilitiesEarlyLvls = {  "lina_dragon_slave",  "lina_fiery_soul", "lina_dragon_slave", "lina_light_strike_array",};
-abilitiesPriority = {  "lina_laguna_blade",  "lina_dragon_slave", "lina_fiery_soul",  "lina_light_strike_array"};
-AoeID = "LINA_Q";
-AoeID2 = "LINA_W";
+-- special_bonus_unique_earthshaker_2
+-- special_bonus_respawn_reduction_35
+-- special_bonus_hp_600
+-- special_bonus_unique_earthshaker
+abilitiesEarlyLvls = {  "earthshaker_fissure",  "earthshaker_aftershock", "earthshaker_enchant_totem" };
+abilitiesPriority = {  "earthshaker_echo_slam",  "earthshaker_fissure", "earthshaker_enchant_totem",  "earthshaker_aftershock"};
+AoeID = "ES_Q";
+--AoeID2 = "TINY_W";
 AoeID_Configs = {
 	[AoeID]=
 	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_27.2,NBS_7,CHP1_1,LoLVL_1,|SCO_26.8,NBS_55,CHP1_1,LoLVL_0,|SCO_4.9,NBS_4,CHP1_0,LoLVL_0,|SCO_64.2,NBS_9,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_28.7,NBS_11,STUN_1,HHP1_0,HGRP_0,|SCO_20.9,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_60.5,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_26,NBS_2,STUN_1,HHP1_1,HGRP_2,|SCO_37,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_73.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_35,NBS_5,STUN_2,HHP1_0,HGRP_2,|SCO_12.1,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_10,NBS_2,STUN_4,HHP1_0,HGRP_2,|",
+		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_43.4,NBS_12,CHP1_1,LoLVL_1,|SCO_4.9,NBS_24,CHP1_0,LoLVL_0,|SCO_37.1,NBS_50,CHP1_1,LoLVL_0,|SCO_42.6,NBS_6,CHP1_2,LoLVL_0,|",
+		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_98.7,NBS_12,STUN_0,HHP1_0,HGRP_2,|SCO_56,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_67,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_75.9,NBS_11,STUN_1,HHP1_0,HGRP_0,|SCO_115.1,NBS_2,STUN_0,HHP1_2,HGRP_2,|SCO_35,NBS_2,STUN_1,HHP1_1,HGRP_0,|SCO_54.4,NBS_2,STUN_2,HHP1_0,HGRP_2,|",
 	},
-	[AoeID2]=
-	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_15.3,NBS_11,CHP1_1,LoLVL_1,|SCO_4.9,NBS_84,CHP1_0,LoLVL_0,|SCO_23.4,NBS_11,CHP1_1,LoLVL_0,|SCO_90,NBS_2,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_4.9,NBS_4,STUN_1,HHP1_0,HGRP_0,|SCO_62,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_45,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_117.7,NBS_5,STUN_1,HHP1_0,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_1,HGRP_0,|SCO_77.8,NBS_3,STUN_0,HHP1_1,HGRP_2,|",
-	},
+	-- [AoeID2]=
+	-- {
+		-- ["C"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+		-- ["H"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+	-- },
 };
 abilityList_OpenAI = {
 	[AoeID]=
 	{
-		["NAME"]="lina_dragon_slave",
-		["DELTA_T"]=2.1,
+		["NAME"]="earthshaker_fissure",
+		["DELTA_T"]=1.5,
 		["DIST"]={
-			["RANGE"]=800,
-			["RADIUS"]=450,
+			["RANGE"]=900,
+			["RADIUS"]=150,
 		},
 		["DMG"]={
-			["BASE"]=10,
-			["LVL"]=75,
+			["BASE"]=60,
+			["LVL"]=50,
 		},
 	},
-	[AoeID2]=
-	{
-		["NAME"]="lina_light_strike_array",
-		["DELTA_T"]=2.0,
-		["DIST"]={
-			["RANGE"]=500,
-			["RADIUS"]=225,
-		},
-		["DMG"]={
-			["BASE"]=40,
-			["LVL"]=40,
-		},		
-	},
+	-- [AoeID2]=
+	-- {
+		
+	-- },
 };
 
 abilityList_Basic = {
-	-- ["W"]=
-	-- {
-		-- ["NAME"]="earthshaker_enchant_totem",
-		-- ["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
-	-- },
+	["W"]=
+	{
+		["NAME"]="earthshaker_enchant_totem",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
+	},
 	["R"]=
 	{
-		["NAME"]="lina_laguna_blade",
-		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+		["NAME"]="earthshaker_echo_slam",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
 	},
 };
 
 MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const );
--- const["defaultRange"] = 250;
+const["defaultRange"] = 250;
 
 
 

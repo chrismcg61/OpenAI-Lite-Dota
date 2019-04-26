@@ -26,78 +26,71 @@ contexts = {};
 ------------------------------------------------------------
 --- Hero CONSTS
 ------------------------------------------------------------
--- lina_dragon_slave
--- lina_light_strike_array
--- lina_fiery_soul
--- lina_laguna_blade
--- special_bonus_unique_lina_3
--- special_bonus_respawn_reduction_30
--- special_bonus_attack_damage_50
--- special_bonus_cast_range_125
--- special_bonus_spell_amplify_6
--- special_bonus_attack_range_150
--- special_bonus_unique_lina_1
--- special_bonus_unique_lina_2
-abilitiesEarlyLvls = {  "lina_dragon_slave",  "lina_fiery_soul", "lina_dragon_slave", "lina_light_strike_array",};
-abilitiesPriority = {  "lina_laguna_blade",  "lina_dragon_slave", "lina_fiery_soul",  "lina_light_strike_array"};
-AoeID = "LINA_Q";
-AoeID2 = "LINA_W";
+-- tusk_ice_shards
+-- tusk_snowball
+-- tusk_tag_team  -- tusk_frozen_sigil
+-- tusk_launch_snowball
+-- tusk_walrus_kick
+-- tusk_walrus_punch
+-- special_bonus_exp_boost_40
+-- special_bonus_attack_damage_35
+-- special_bonus_unique_tusk_2
+-- special_bonus_gold_income_15
+-- special_bonus_armor_6
+-- special_bonus_magic_resistance_12
+-- special_bonus_hp_700
+-- special_bonus_unique_tusk
+abilitiesEarlyLvls = {  };
+abilitiesPriority = {  "tusk_walrus_punch",  "tusk_ice_shards", "tusk_snowball",  "tusk_tag_team"};
+AoeID = "TUSK_Q";
+-- AoeID2 = "LINA_W";
 AoeID_Configs = {
 	[AoeID]=
 	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_27.2,NBS_7,CHP1_1,LoLVL_1,|SCO_26.8,NBS_55,CHP1_1,LoLVL_0,|SCO_4.9,NBS_4,CHP1_0,LoLVL_0,|SCO_64.2,NBS_9,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_28.7,NBS_11,STUN_1,HHP1_0,HGRP_0,|SCO_20.9,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_60.5,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_26,NBS_2,STUN_1,HHP1_1,HGRP_2,|SCO_37,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_73.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_35,NBS_5,STUN_2,HHP1_0,HGRP_2,|SCO_12.1,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_10,NBS_2,STUN_4,HHP1_0,HGRP_2,|",
+		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_25,NBS_4,CHP1_1,LoLVL_1,|SCO_4,NBS_5,CHP1_0,LoLVL_0,|SCO_29.6,NBS_36,CHP1_1,LoLVL_0,|SCO_80,NBS_3,CHP1_2,LoLVL_0,|",
+		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_25.8,NBS_17,STUN_0,HHP1_0,HGRP_2,|SCO_41.1,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_4.9,NBS_4,STUN_0,HHP1_1,HGRP_0,|SCO_33.3,NBS_10,STUN_1,HHP1_0,HGRP_0,|SCO_23.4,NBS_2,STUN_2,HHP1_0,HGRP_2,|SCO_23.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_27.2,NBS_2,STUN_2,HHP1_1,HGRP_2,|SCO_35,NBS_2,STUN_2,HHP1_0,HGRP_0,|SCO_35,NBS_2,STUN_1,HHP1_1,HGRP_2,|",
 	},
-	[AoeID2]=
-	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_15.3,NBS_11,CHP1_1,LoLVL_1,|SCO_4.9,NBS_84,CHP1_0,LoLVL_0,|SCO_23.4,NBS_11,CHP1_1,LoLVL_0,|SCO_90,NBS_2,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_4.9,NBS_4,STUN_1,HHP1_0,HGRP_0,|SCO_62,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_45,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_117.7,NBS_5,STUN_1,HHP1_0,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_1,HGRP_0,|SCO_77.8,NBS_3,STUN_0,HHP1_1,HGRP_2,|",
-	},
+	-- [AoeID2]=
+	-- {
+		-- ["C"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+		-- ["H"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+	-- },
 };
 abilityList_OpenAI = {
 	[AoeID]=
 	{
-		["NAME"]="lina_dragon_slave",
-		["DELTA_T"]=2.1,
+		["NAME"]="tusk_ice_shards",
+		["DELTA_T"]=1.9,
 		["DIST"]={
 			["RANGE"]=800,
-			["RADIUS"]=450,
+			["RADIUS"]=200,
 		},
 		["DMG"]={
-			["BASE"]=10,
-			["LVL"]=75,
+			["BASE"]=0,
+			["LVL"]=60,
 		},
 	},
-	[AoeID2]=
-	{
-		["NAME"]="lina_light_strike_array",
-		["DELTA_T"]=2.0,
-		["DIST"]={
-			["RANGE"]=500,
-			["RADIUS"]=225,
-		},
-		["DMG"]={
-			["BASE"]=40,
-			["LVL"]=40,
-		},		
-	},
+	-- [AoeID2]=
+	-- {
+	
+	-- },
 };
 
 abilityList_Basic = {
-	-- ["W"]=
-	-- {
-		-- ["NAME"]="earthshaker_enchant_totem",
-		-- ["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
-	-- },
+	["W"]=
+	{
+		["NAME"]="tusk_snowball",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+	},
 	["R"]=
 	{
-		["NAME"]="lina_laguna_blade",
+		["NAME"]="tusk_walrus_punch",
 		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
 	},
 };
 
 MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const );
--- const["defaultRange"] = 250;
+const["defaultRange"] = 900;
 
 
 

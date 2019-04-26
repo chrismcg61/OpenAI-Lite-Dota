@@ -10,23 +10,130 @@ autoPick_PlayerHero = "";
 --autoPick_PlayerHero = "npc_dota_hero_crystal_maiden";
 
 allyHeroes = {
-	"npc_dota_hero_lina",
-	"npc_dota_hero_phantom_assassin",
-	"npc_dota_hero_sven",
-	"npc_dota_hero_crystal_maiden",
 	
-	"npc_dota_hero_bane",	
+	"npc_dota_hero_crystal_maiden",		
+	"npc_dota_hero_lina",	
+	
+	"npc_dota_hero_phantom_assassin",	
+	"npc_dota_hero_tusk",
+	
+	"npc_dota_hero_bane",
+	--"npc_dota_hero_warlock",
+	-- "npc_dota_hero_meepo",
+	
+	--"npc_dota_hero_bloodseeker",	
+		
+	--"npc_dota_hero_windrunner",
+	--"npc_dota_hero_earthshaker",			
+	
+	--"npc_dota_hero_death_prophet",	
+	--"npc_dota_hero_dragon_knight",	
+	
+	--"npc_dota_hero_pugna",	
+	--"npc_dota_hero_kunkka",
+	--"npc_dota_hero_storm_spirit",
+	--"npc_dota_hero_lion",	
+	
+	--"npc_dota_hero_sven",		
+	--"npc_dota_hero_phantom_assassin",	
+	--"npc_dota_hero_juggernaut",		
 }
 ennemyHeroes = {
-	"npc_dota_hero_viper",
-	"npc_dota_hero_bloodseeker",
-	"npc_dota_hero_juggernaut",
-	"npc_dota_hero_witch_doctor",
-	"npc_dota_hero_skywrath_mage",
+
+	--"npc_dota_hero_lina",	
 	
-	"npc_dota_hero_death_prophet",
+	"npc_dota_hero_crystal_maiden",			
+	"npc_dota_hero_windrunner",
+	
+	"npc_dota_hero_earthshaker",		
+	"npc_dota_hero_tiny",
+	
+	"npc_dota_hero_bane",
+	
+	
+	--- OpenAIs:
+	--"npc_dota_hero_meepo",	
+	--"npc_dota_hero_tusk",	
+	
+	
+	--"npc_dota_hero_phantom_assassin",	
+	--"npc_dota_hero_warlock",
+	--"npc_dota_hero_skywrath_mage",
+
+	
+	-- Weak:
+	-- "npc_dota_hero_phantom_assassin",
+	-- "npc_dota_hero_phantom_assassin",
+	-- "npc_dota_hero_phantom_assassin",
+	-- "npc_dota_hero_phantom_assassin",
+	-- "npc_dota_hero_phantom_assassin",
+	
+	-- STRONG :
+	-- "npc_dota_hero_viper",
+	-- "npc_dota_hero_necrolyte",
+	-- "npc_dota_hero_razor",
+	-- "npc_dota_hero_nevermore",
+	-- "npc_dota_hero_lion",
+	
+	-- Radiant COPY :
+	-- "npc_dota_hero_crystal_maiden",		
+	-- "npc_dota_hero_lina",	
+	-- "npc_dota_hero_sven",	
+	-- "npc_dota_hero_phantom_assassin",
+	-- "npc_dota_hero_abaddon",
+	
+	
+	-- "npc_dota_hero_bloodseeker",
+	-- "npc_dota_hero_juggernaut",
+	-- "npc_dota_hero_witch_doctor",
+	-- "npc_dota_hero_skywrath_mage",
+	
+	--"npc_dota_hero_dragon_knight",
+	--"npc_dota_hero_kunkka",	
+	--"npc_dota_hero_sand_king",	
+	
+	-- "npc_dota_hero_puck",
+	-- "npc_dota_hero_queenofpain",
+	-- "npc_dota_hero_keeper_of_the_light",	
+	-- "npc_dota_hero_tusk",
+	-- "npc_dota_hero_abaddon",
+
 }
   
+allyHeroes2 = {
+	"npc_dota_hero_pugna",
+	"npc_dota_hero_death_prophet",
+
+	"npc_dota_hero_earthshaker",
+	"npc_dota_hero_dragon_knight",
+	
+	"npc_dota_hero_kunkka",
+	"npc_dota_hero_sand_king",
+
+	"npc_dota_hero_magnataur",
+	"npc_dota_hero_tiny",	
+	"npc_dota_hero_legion_commander",
+	"npc_dota_hero_rattletrap",
+		
+	"npc_dota_hero_nyx_assassin",
+	"npc_dota_hero_ember_spirit",
+	"npc_dota_hero_slark",	
+	
+	
+	"npc_dota_hero_puck",
+	"npc_dota_hero_windrunner",
+	
+	"npc_dota_hero_nevermore",
+	"npc_dota_hero_razor",
+	"npc_dota_hero_lion",
+	"npc_dota_hero_necrolyte",
+	"npc_dota_hero_leshrac",
+	"npc_dota_hero_jakiro",
+	"npc_dota_hero_keeper_of_the_light",
+	"npc_dota_hero_meepo",
+	"npc_dota_hero_tusk",
+	
+}
   
 ---------------------------------------------------------------------
 -- List of All Hero Internal Names :
@@ -181,10 +288,13 @@ npc_dota_hero_zuus
 ---------------------------------------------------------------------
 -- FUNCS :
 --------------------------------------------------------------------- 
---playerHero = GetSelectedHeroName(0);
+playerHero = "";
 function Think()
 
 	playerHero = GetSelectedHeroName(0);
+	if playerHero=="" then
+		playerHero = GetSelectedHeroName(5);
+	end
 	print( "playerHero = " .. playerHero );
  
     if ( GetTeam() == TEAM_RADIANT ) then
@@ -194,30 +304,37 @@ function Think()
 			SelectHero( 0, autoPick_PlayerHero );  
 		end
 		
-		local aiHeroIndex = 1;
-		if playerHero ~= "" then
-			for _,hero in pairs(allyHeroes) do
-				if playerHero ~= hero then
-					SelectHero( aiHeroIndex, hero ); 	
-					aiHeroIndex = aiHeroIndex + 1;
-				end				
-			end
-		end	
+		SelectTeam( 0, allyHeroes );	
 		
 		
     elseif ( GetTeam() == TEAM_DIRE ) then
         print( "My Hero Selection : DIRE" );
 					
-		local aiHeroIndex = 5;
-		if playerHero ~= "" then
-			for _,hero in pairs(ennemyHeroes) do
-				if playerHero ~= hero then
-					SelectHero( aiHeroIndex, hero ); 	
-					aiHeroIndex = aiHeroIndex + 1;
-				end				
-			end
-		end				
+		SelectTeam( 5, ennemyHeroes );			
     end
  
+end
+
+function SelectTeam( aiHeroIndex, heroList )
+	
+	if GetSelectedHeroName(aiHeroIndex) ~= "" then
+		aiHeroIndex = aiHeroIndex + 1;
+	end
+	
+	if playerHero ~= "" then			
+		for _,hero in pairs(heroList) do
+			if GetSelectedHeroName(aiHeroIndex) == "" then
+			--if playerHero ~= hero then
+				SelectHero( aiHeroIndex, hero ); 	
+			--end		
+			end				
+			aiHeroIndex = aiHeroIndex + 1;
+		end
+		
+		-- local npcPlayer = GetTeamMember( 2 );
+		-- local statType = npcPlayer:GetPrimaryAttribute();
+		-- local infoStr = "Player Hero StatType = " .. statType;
+		-- print(infoStr);
+	end	
 end
  

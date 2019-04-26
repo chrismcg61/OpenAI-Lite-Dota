@@ -10,9 +10,8 @@ MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")
 ------------------------------------------------------------
 --- INIT TABLE
 ------------------------------------------------------------
-iStatsMode = 1;  -- 1 = Str
 tableItemsToBuy = {};
-ItemBuild_Default.InitTable_Carry_Melee( tableItemsToBuy, iStatsMode );
+ItemBuild_Default.InitTable_Caster_ManaBoots( tableItemsToBuy, 0 );
 
 
 ------------------------------------------------------------

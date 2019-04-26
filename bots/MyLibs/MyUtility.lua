@@ -32,6 +32,7 @@ Allies  = nil;
 Enemies = nil;
 lowEnnemy = nil;
 trees = nil;
+dominateCreepTarget = nil;
 
 
 
@@ -52,7 +53,7 @@ MyUtility.const["safeRegenTime"] = 3.0;
 ------------------------------
 MyUtility.shopLocations = {};
 MyUtility.shopLocations["SIDE_SHOP_BOT"] = Vector(7249,-4113);
-MyUtility.shopLocations["SIDE_SHOP_TOP"] = Vector(7249,-4113);
+MyUtility.shopLocations["SIDE_SHOP_TOP"] = Vector(-7220,4430);
 MyUtility.shopLocations["SECRET_SHOP_RADIANT"] = Vector(-4472,1328);
 MyUtility.shopLocations["SECRET_SHOP_DIRE"] = Vector(4586,-1588);
 
@@ -184,6 +185,7 @@ function MyUtility.UseSingleItem(itemName, itemMod, target, minCharges, tree)
 	-- Always Renew Clarities/Salves:	
 	------------------------------------------------------------
 	if  alwaysCarryRegen==true
+	and DotaTime() < 60*15 
 	and (itemName == "item_clarity" or itemName == "item_flask") 
 	and itemCount <= 2
 	then
@@ -213,6 +215,8 @@ end
 function MyUtility.UseItems( _botStatus )
 	local npcBot=GetBot();
 	if(_botStatus~=nil) then botStatus = _botStatus; end
+	
+	if npcBot:IsIllusion() then  return;  end
 	
 	MyUtility.AnalyseContext();
 
@@ -275,7 +279,7 @@ function MyUtility.UseItems( _botStatus )
 		local shrineCD = GetShrineCooldown(Shrine);
 		local infoStr = "Shrine CD = " ..  shrineCD;
 		--npcBot:ActionImmediate_Chat( infoStr,  false);
-		print( infoStr );
+		--print( infoStr );
 		if( allyNeedHP~=nil  and  shrineCD == 0 )then 
 			npcBot:Action_UseShrine( Shrine ); 
 			return; 
@@ -297,6 +301,10 @@ function MyUtility.UseItems( _botStatus )
 	
 	-- ATTACK :
 	if MyUtility.UseSingleItem( "item_phase_boots", "modifier_item_phase_boots", nil, 0) then return; end	
+	
+	if dominateCreepTarget~=nil then
+		if MyUtility.UseSingleItem( "item_helm_of_the_dominator", "", dominateCreepTarget, 0) then return; end	
+	end
 	
 	if(bFighting)then
 		if MyUtility.UseSingleItem( "item_black_king_bar", "modifier_item_black_king_bar", nil, 0) then return; end
@@ -351,8 +359,8 @@ function MyUtility.UseItems( _botStatus )
 			then	
 				local destLane, dest = MyUtility.DestLane( botMode );	
 				if destLane ~= LANE_NONE and GetUnitToLocationDistance(npcBot, dest) > 6000 then
-				
-					npcBot:ActionImmediate_Chat( "TPing__"..botMode.."__"..botModeDesire , false);
+					local infoStr = "TPing__"..botMode.."__"..botModeDesire;
+					--npcBot:ActionImmediate_Chat( infoStr , false);
 					--tp = MyUtility.IsItemAvailable("item_tpscroll");
 					--if tp ~= nil  and tp:IsFullyCastable() and  not npcBot:IsUsingAbility() then
 						local buyRes = npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );-- PURCHASE_ITEM_SUCCESS
@@ -383,6 +391,15 @@ function MyUtility.AnalyseContext()
 	local now = RealTime();
 	
 	trees = npcBot:GetNearbyTrees( MyUtility.const["maxCastRange"] );
+	
+	dominateCreepTarget = nil;
+	local creeps = npcBot:GetNearbyCreeps( MyUtility.const["maxCastRange"], true);
+	for _,creep in pairs(creeps) do
+		if string.find(creep:GetUnitName(),"siege")~=nil then
+			dominateCreepTarget = creep;
+			break;
+		end
+	end
 	
 	--Ennemies:
 	bSafeToRegen = true;
@@ -447,7 +464,7 @@ function MyUtility.AnalyseContext()
 	-- else 		
 	-- end
 	for _,Ally in pairs(Allies) do
-		if Ally:GetMaxHealth() - Ally:GetHealth() > 350 and Ally:GetHealthRegen() < 30 then
+		if not Ally:IsIllusion()  and  Ally:GetMaxHealth() - Ally:GetHealth() > 350 and Ally:GetHealthRegen() < 30 then
 			allyNeedHP = Ally;
 			if allyNeedHP == npcBot then bNeedHp = true; end
 		end
@@ -479,17 +496,23 @@ function MyUtility.AnalyseContext()
 	-- else 		
 	-- end
 	for _,Ally in pairs(AlliesFar) do
-		if Ally:GetHealth() < 400 
-		or Ally:GetHealth()/Ally:GetMaxHealth() < 0.4
+		if Ally:GetHealth()/Ally:GetMaxHealth() < 0.4
+		--or Ally:GetHealth() < 800 
 		--or (Ally:GetActiveMode() == BOT_MODE_RETREAT  and  Ally:GetActiveModeDesire() > 0.85)
 		then
 			allyDying = Ally;
-			if allyDying == npcBot then bDying = true; end
+			if allyDying == npcBot then 
+				bDying = true; 
+				return;
+			end
 		end
 	end		
 end
 
 itemsToSell = {
+	"item_flask",
+	"item_clarity",
+
 	"item_tango",
 	"item_stout_shield",
 	"item_quelling_blade",
@@ -508,6 +531,16 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 		return;
 	end
 
+	-- Check COURIER:
+	local itemCour = "item_courier";
+	if( GetItemStockCount(itemCour)>0 )then 
+		npcBot:ActionImmediate_PurchaseItem( itemCour );
+		local infoStr = "Buying Cour!";
+		--npcBot:ActionImmediate_Chat( infoStr, true);
+		print(infoStr);
+	end
+	
+	
 	local sNextItem = tableItemsToBuy[1];
 	
 	if (sNextItem == "DELIVER_NOW") then
@@ -575,8 +608,13 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 				if GetUnitToLocationDistance(npcBot, MyUtility.shopLocations["SECRET_SHOP_RADIANT"]) > GetUnitToLocationDistance(npcBot, MyUtility.shopLocations["SECRET_SHOP_DIRE"]) then
 					shopLocation = MyUtility.shopLocations["SECRET_SHOP_DIRE"];
 				end
-				npcBot:Action_MoveToLocation( shopLocation );		
-				npcBot:ActionImmediate_Chat( "SHOP : SECRET", false);			
+				
+				-- if npcBot:GetHealth() > 0.25*npcBot:GetMaxHealth() then
+					npcBot:Action_MoveToLocation( shopLocation );		
+				-- end
+				local infoStr = "SHOP : SECRET";
+				-- npcBot:ActionImmediate_Chat( infoStr, false);
+				-- print(infoStr);				
 				return;
 			end
 			
@@ -593,7 +631,9 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 					shopLocation = MyUtility.shopLocations["SIDE_SHOP_TOP"];
 				end			
 				npcBot:Action_MoveToLocation( shopLocation );	
-				npcBot:ActionImmediate_Chat( "SHOP : SIDE", false);
+				local infoStr = "SHOP : SIDE";
+				-- npcBot:ActionImmediate_Chat( infoStr, false);
+				-- print(infoStr);
 				-- local sideShopPos = GetShopLocation( TEAM_RADIANT, SHOP_SIDE);
 				-- local courier = npcBot:GetCourier(0);
 				-- npcBot:ActionImmediate_Courier( courier , COURIER_ACTION_SECRET_SHOP );			
@@ -614,6 +654,11 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 			local str = "ITEM PURCHASE : ERROR : " .. sNextItem;
 			npcBot:ActionImmediate_Chat( str, false);	
 			print(str);
+			
+			--tableItemsToBuy = {};
+			for _,itemName in ipairs(tableItemsToBuy) do 
+				table.remove( tableItemsToBuy, 1 );	
+			end
 			-- if( IsCourierAvailable()  and  courier:DistanceFromFountain() < 2000 )then  -- npcBot:IsAlive()
 				-- npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_SECRET_SHOP );  -- COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS
 			-- end

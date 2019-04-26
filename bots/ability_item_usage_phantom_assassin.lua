@@ -2,25 +2,20 @@
 ------------------------------------------------------------
 --- INCLUDES
 ------------------------------------------------------------
-ItemBuild_Default = require( GetScriptDirectory().."/MyLibs/ItemBuild_Default")
---Utility = require( GetScriptDirectory().."/MyLibs/Utility")
 MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")
 
 
 ------------------------------------------------------------
---- INIT TABLE
+--- INIT
 ------------------------------------------------------------
-iStatsMode = 2;  -- 2 = Agi
-tableItemsToBuy = {};
-ItemBuild_Default.InitTable_Carry_Melee( tableItemsToBuy, iStatsMode );
+botStatus = {};
+MyUtility.InitStatus( botStatus );
 
 
 ------------------------------------------------------------
---- FUNCS
+--- FUNCS :
 ------------------------------------------------------------
-function ItemPurchaseThink()
-
-	MyUtility.MyPurchaseThink( tableItemsToBuy );
-
+function ItemUsageThink()
+	MyUtility.UseItems(botStatus);
 end
 

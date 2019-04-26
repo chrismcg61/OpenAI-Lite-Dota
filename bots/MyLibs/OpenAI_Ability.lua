@@ -121,7 +121,7 @@ function OpenAI_Ability.InitVars( var, contextIds )
 	npcBot = GetBot();
 	local introChat = npcBot:GetUnitName() .. " : OpenAI Mode!";
 	print(introChat);
-	npcBot:ActionImmediate_Chat( introChat ,true);
+	--npcBot:ActionImmediate_Chat( introChat ,true);
 
 end 
 
@@ -152,6 +152,9 @@ function OpenAI_Ability.ConsiderAbilities(_abilityList, _contextIds, _var, _cont
 	end
 	
 	
+	if npcBot:IsChanneling()  or  npcBot:IsIllusion() then
+		return BOT_ACTION_DESIRE_NONE, 0;
+	end
 	---------------------------------------
 	-- Try LB: 
 	---------------------------------------
@@ -250,7 +253,9 @@ function EvalLastAbility()
 	local newScore = GetScore();
 	local deltaScore = 0;
 	for _,ctxScore in pairs( ctxScores ) do
-		deltaScore = deltaScore  + (newScore[ ctxScore["ID"] ] - var["prevScore"][ ctxScore["ID"] ]) * ctxScore["SCORE"];
+		local scoreItem = (newScore[ ctxScore["ID"] ] - var["prevScore"][ ctxScore["ID"] ]);
+		if(scoreItem<0)then scoreItem=0; end
+		deltaScore = deltaScore  +  scoreItem * ctxScore["SCORE"];
 	end	
 	
 	local decimalApprox = 10;
@@ -267,7 +272,7 @@ function EvalLastAbility()
 	logStr = logStr .. "N:"..var["foundCtx"]["NBS"] .." | ";	
 	--npcBot:ActionImmediate_Chat( logStr ,true);	
 	
-	logStr = logStr .. " | | ";
+	logStr = logStr .. " |__| ";
 	
 	--logStr = "";
 	for _,ctxScore in pairs( ctxScores ) do

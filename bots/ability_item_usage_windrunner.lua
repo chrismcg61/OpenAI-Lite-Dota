@@ -26,78 +26,74 @@ contexts = {};
 ------------------------------------------------------------
 --- Hero CONSTS
 ------------------------------------------------------------
--- lina_dragon_slave
--- lina_light_strike_array
--- lina_fiery_soul
--- lina_laguna_blade
--- special_bonus_unique_lina_3
--- special_bonus_respawn_reduction_30
--- special_bonus_attack_damage_50
--- special_bonus_cast_range_125
--- special_bonus_spell_amplify_6
--- special_bonus_attack_range_150
--- special_bonus_unique_lina_1
--- special_bonus_unique_lina_2
-abilitiesEarlyLvls = {  "lina_dragon_slave",  "lina_fiery_soul", "lina_dragon_slave", "lina_light_strike_array",};
-abilitiesPriority = {  "lina_laguna_blade",  "lina_dragon_slave", "lina_fiery_soul",  "lina_light_strike_array"};
-AoeID = "LINA_Q";
-AoeID2 = "LINA_W";
+-- windrunner_shackleshot
+-- windrunner_powershot
+-- windrunner_windrun
+-- windrunner_focusfire
+-- special_bonus_mp_regen_4
+-- special_bonus_unique_windranger_2
+-- special_bonus_movement_speed_40
+-- special_bonus_intelligence_20
+-- special_bonus_spell_amplify_15
+-- special_bonus_magic_resistance_20
+-- special_bonus_attack_range_100
+-- special_bonus_unique_windranger
+abilitiesEarlyLvls = { "windrunner_powershot", "windrunner_shackleshot", "windrunner_powershot", "windrunner_windrun", };
+abilitiesPriority = {  "windrunner_focusfire",  "windrunner_powershot", "windrunner_windrun", "windrunner_shackleshot",  };
+AoeID = "WIND_W";
+-- AoeID2 = "LINA_W";
 AoeID_Configs = {
 	[AoeID]=
 	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_27.2,NBS_7,CHP1_1,LoLVL_1,|SCO_26.8,NBS_55,CHP1_1,LoLVL_0,|SCO_4.9,NBS_4,CHP1_0,LoLVL_0,|SCO_64.2,NBS_9,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_28.7,NBS_11,STUN_1,HHP1_0,HGRP_0,|SCO_20.9,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_60.5,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_26,NBS_2,STUN_1,HHP1_1,HGRP_2,|SCO_37,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_73.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_35,NBS_5,STUN_2,HHP1_0,HGRP_2,|SCO_12.1,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_10,NBS_2,STUN_4,HHP1_0,HGRP_2,|",
+		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_24,NBS_9,CHP1_1,LoLVL_1,|SCO_4.8,NBS_33,CHP1_0,LoLVL_0,|SCO_33.7,NBS_74,CHP1_1,LoLVL_0,|SCO_34.8,NBS_21,CHP1_2,LoLVL_0,|",
+		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_73.5,NBS_13,STUN_0,HHP1_0,HGRP_2,|SCO_108.4,NBS_5,STUN_0,HHP1_1,HGRP_0,|SCO_15.2,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_23.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_28.7,NBS_9,STUN_1,HHP1_0,HGRP_0,|SCO_60,NBS_2,STUN_2,HHP1_0,HGRP_0,|SCO_36.3,NBS_3,STUN_1,HHP1_0,HGRP_2,|",
 	},
-	[AoeID2]=
-	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_15.3,NBS_11,CHP1_1,LoLVL_1,|SCO_4.9,NBS_84,CHP1_0,LoLVL_0,|SCO_23.4,NBS_11,CHP1_1,LoLVL_0,|SCO_90,NBS_2,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_4.9,NBS_4,STUN_1,HHP1_0,HGRP_0,|SCO_62,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_45,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_117.7,NBS_5,STUN_1,HHP1_0,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_1,HGRP_0,|SCO_77.8,NBS_3,STUN_0,HHP1_1,HGRP_2,|",
-	},
+	-- [AoeID2]=
+	-- {
+		-- ["C"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+		-- ["H"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|",
+	-- },
 };
 abilityList_OpenAI = {
 	[AoeID]=
 	{
-		["NAME"]="lina_dragon_slave",
+		["NAME"]="windrunner_powershot",
 		["DELTA_T"]=2.1,
 		["DIST"]={
-			["RANGE"]=800,
-			["RADIUS"]=450,
+			["RANGE"]=900,
+			["RADIUS"]=200,
 		},
 		["DMG"]={
-			["BASE"]=10,
-			["LVL"]=75,
+			["BASE"]=50,
+			["LVL"]=80,
 		},
 	},
-	[AoeID2]=
-	{
-		["NAME"]="lina_light_strike_array",
-		["DELTA_T"]=2.0,
-		["DIST"]={
-			["RANGE"]=500,
-			["RADIUS"]=225,
-		},
-		["DMG"]={
-			["BASE"]=40,
-			["LVL"]=40,
-		},		
-	},
+	-- [AoeID2]=
+	-- {
+	
+	-- },
 };
 
 abilityList_Basic = {
-	-- ["W"]=
-	-- {
-		-- ["NAME"]="earthshaker_enchant_totem",
-		-- ["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
-	-- },
+	["Q"]=
+	{
+		["NAME"]="windrunner_shackleshot",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+	},
+	["E"]=
+	{
+		["NAME"]="windrunner_windrun",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
+	},
 	["R"]=
 	{
-		["NAME"]="lina_laguna_blade",
-		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+		["NAME"]="windrunner_focusfire",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT_BUILDING,
 	},
 };
 
 MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const );
--- const["defaultRange"] = 250;
+const["defaultRange"] = 600;
 
 
 

@@ -26,78 +26,78 @@ contexts = {};
 ------------------------------------------------------------
 --- Hero CONSTS
 ------------------------------------------------------------
--- lina_dragon_slave
--- lina_light_strike_array
--- lina_fiery_soul
--- lina_laguna_blade
--- special_bonus_unique_lina_3
--- special_bonus_respawn_reduction_30
--- special_bonus_attack_damage_50
--- special_bonus_cast_range_125
--- special_bonus_spell_amplify_6
--- special_bonus_attack_range_150
--- special_bonus_unique_lina_1
--- special_bonus_unique_lina_2
-abilitiesEarlyLvls = {  "lina_dragon_slave",  "lina_fiery_soul", "lina_dragon_slave", "lina_light_strike_array",};
-abilitiesPriority = {  "lina_laguna_blade",  "lina_dragon_slave", "lina_fiery_soul",  "lina_light_strike_array"};
-AoeID = "LINA_Q";
-AoeID2 = "LINA_W";
+-- tiny_avalanche
+-- tiny_toss
+-- tiny_craggy_exterior   -- tiny_tree_grab   	
+-- tiny_grow
+-- special_bonus_strength_6
+-- special_bonus_intelligence_12
+-- special_bonus_attack_damage_60
+-- special_bonus_movement_speed_35
+-- special_bonus_attack_speed_25
+-- special_bonus_mp_regen_14
+-- special_bonus_cooldown_reduction_20
+-- special_bonus_unique_tiny
+abilitiesEarlyLvls = {  "tiny_avalanche",  "tiny_craggy_exterior", };
+abilitiesPriority = {  "tiny_avalanche",  "tiny_toss", "tiny_craggy_exterior",  "tiny_grow"};
+AoeID = "TINY_Q";
+--AoeID2 = "TINY_W";
 AoeID_Configs = {
 	[AoeID]=
 	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_27.2,NBS_7,CHP1_1,LoLVL_1,|SCO_26.8,NBS_55,CHP1_1,LoLVL_0,|SCO_4.9,NBS_4,CHP1_0,LoLVL_0,|SCO_64.2,NBS_9,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_28.7,NBS_11,STUN_1,HHP1_0,HGRP_0,|SCO_20.9,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_60.5,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_26,NBS_2,STUN_1,HHP1_1,HGRP_2,|SCO_37,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_73.3,NBS_3,STUN_1,HHP1_1,HGRP_0,|SCO_35,NBS_5,STUN_2,HHP1_0,HGRP_2,|SCO_12.1,NBS_3,STUN_1,HHP1_0,HGRP_2,|SCO_10,NBS_2,STUN_4,HHP1_0,HGRP_2,|",
+		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_15.1,NBS_3,CHP1_1,LoLVL_1,|SCO_4.7,NBS_14,CHP1_0,LoLVL_0,|SCO_31.1,NBS_62,CHP1_1,LoLVL_0,|SCO_76.2,NBS_16,CHP1_2,LoLVL_0,|",
+		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_82,NBS_17,STUN_0,HHP1_0,HGRP_2,|SCO_52.2,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_76.7,NBS_15,STUN_1,HHP1_0,HGRP_0,|SCO_29.8,NBS_3,STUN_0,HHP1_1,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_2,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_1,HGRP_0,|",
 	},
-	[AoeID2]=
-	{
-		["C"]= "SCO_3.8,NBS_4,CHP1_0,LoLVL_1,|SCO_15.3,NBS_11,CHP1_1,LoLVL_1,|SCO_4.9,NBS_84,CHP1_0,LoLVL_0,|SCO_23.4,NBS_11,CHP1_1,LoLVL_0,|SCO_90,NBS_2,CHP1_2,LoLVL_0,|",
-		["H"]= "SCO_3.8,NBS_4,STUN_0,HHP1_0,HGRP_0,|SCO_4.9,NBS_4,STUN_1,HHP1_0,HGRP_0,|SCO_62,NBS_11,STUN_0,HHP1_0,HGRP_2,|SCO_45,NBS_6,STUN_0,HHP1_1,HGRP_0,|SCO_117.7,NBS_5,STUN_1,HHP1_0,HGRP_2,|SCO_60,NBS_2,STUN_1,HHP1_1,HGRP_0,|SCO_77.8,NBS_3,STUN_0,HHP1_1,HGRP_2,|",
-	},
+	-- [AoeID2]=
+	-- {
+		-- ["C"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|SCO_4.9,NBS_4,LoLVL_1,CHP1_1,|SCO_4.9,NBS_8,LoLVL_0,CHP1_0,|SCO_12.8,NBS_24,LoLVL_0,CHP1_1,|",
+		-- ["H"]= "SCO_3.8,NBS_4,LoLVL_1,CHP1_0,|SCO_4.9,NBS_4,LoLVL_1,CHP1_1,|SCO_4.9,NBS_8,LoLVL_0,CHP1_0,|SCO_12.8,NBS_24,LoLVL_0,CHP1_1,|",
+	-- },
 };
 abilityList_OpenAI = {
 	[AoeID]=
 	{
-		["NAME"]="lina_dragon_slave",
-		["DELTA_T"]=2.1,
+		["NAME"]="tiny_avalanche",
+		["DELTA_T"]=2.9,
 		["DIST"]={
-			["RANGE"]=800,
-			["RADIUS"]=450,
+			["RANGE"]=600,
+			["RADIUS"]=400,
 		},
 		["DMG"]={
-			["BASE"]=10,
-			["LVL"]=75,
+			["BASE"]=20,
+			["LVL"]=70,
 		},
 	},
-	[AoeID2]=
-	{
-		["NAME"]="lina_light_strike_array",
-		["DELTA_T"]=2.0,
-		["DIST"]={
-			["RANGE"]=500,
-			["RADIUS"]=225,
-		},
-		["DMG"]={
-			["BASE"]=40,
-			["LVL"]=40,
-		},		
-	},
+	-- [AoeID2]=
+	-- {
+		-- ["NAME"]="tiny_toss",
+		-- ["DELTA_T"]=2.5,
+		-- ["DIST"]={
+			-- ["RANGE"]=900,
+			-- ["RADIUS"]=275,
+		-- },
+		-- ["DMG"]={
+			-- ["BASE"]=20,
+			-- ["LVL"]=70,
+		-- },
+	-- },
 };
 
 abilityList_Basic = {
-	-- ["W"]=
-	-- {
-		-- ["NAME"]="earthshaker_enchant_totem",
-		-- ["TARGET_TYPE"]= MyGenericAbility.TARGET_NONE,
-	-- },
-	["R"]=
+	["W"]=
 	{
-		["NAME"]="lina_laguna_blade",
+		["NAME"]="tiny_toss",
 		["TARGET_TYPE"]= MyGenericAbility.TARGET_UNIT,
+	},
+	["E"]=
+	{
+		["NAME"]="tiny_craggy_exterior",
+		["TARGET_TYPE"]= MyGenericAbility.TARGET_TREE,
 	},
 };
 
 MyGenericAbility.Init( abilityList_Basic, abilityList_OpenAI, const );
--- const["defaultRange"] = 250;
+const["defaultRange"] = 900;
 
 
 

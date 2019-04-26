@@ -11,8 +11,12 @@ MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")
 --- INIT TABLE
 ------------------------------------------------------------
 iStatsMode = 2;  -- 2 = Agi
+iAuraMode = 0; -- 0 = None, 1 = Vlads, 2 = HelmDom
+iManaMode = 0;
+
 tableItemsToBuy = {};
-ItemBuild_Default.InitTable_Carry_Melee( tableItemsToBuy, iStatsMode );
+-- ItemBuild_Default.InitTable_Carry_Melee( tableItemsToBuy, iStatsMode, iAuraMode );
+ItemBuild_Default.InitTable_Carry_Melee( tableItemsToBuy, iStatsMode, iAuraMode, iManaMode );
 
 
 ------------------------------------------------------------

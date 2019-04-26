@@ -288,22 +288,103 @@ item_yasha
 --]]
 
 
+ItemBuild_Default.items_Auras_1 = { 
+
+	"item_tango",
+	"item_flask",
+	--200g
+	
+	"item_enchanted_mango",
+	"item_enchanted_mango",
+	--"item_enchanted_mango",
+	--340g
+	
+	"item_stout_shield", 
+	--540g	
+	
+};
+ItemBuild_Default.items_Auras_2 = { 	
+	
+	"item_bottle",
+	"item_magic_stick",
+	
+	--Headdress:
+	"item_ring_of_regen",
+	-- "item_branches",
+	-- "item_recipe_headdress",
+	"DELIVER_NOW",	
+	
+	-- Basi:
+	-- "item_sobi_mask",  --325g
+	-- "item_ring_of_protection",  --175g	
+	
+	--Phase Boots:
+	"item_boots",
+	-- "item_chainmail",
+	-- "item_blades_of_attack",	
+};
+
+ItemBuild_Default.items_Auras_5 = { 
+	-- Helm Dom :
+	-- Headdress:
+	-- "item_ring_of_regen",
+	"item_branches",
+	"item_recipe_headdress",	
+	"DELIVER_NOW",	
+	"item_ring_of_health",	
+	"item_gloves",			
+	
+	-- Vlads:
+	"item_ring_of_protection",	
+	"item_sobi_mask",
+	"item_lifesteal",	
+	"item_recipe_vladmir",	
+	
+	--Phase Boots:
+	-- "item_boots",
+	"item_chainmail",
+	"item_blades_of_attack",	
+		
+	-- Drums
+	"item_crown",
+	"item_wind_lace",
+	"item_sobi_mask",	
+	"item_recipe_ancient_janggo",
+	
+	-- AC :
+	"item_hyperstone",
+	"item_platemail",
+	"item_chainmail",
+	"item_recipe_assault",	
+};
+
+
 ItemBuild_Default.items_Carry_Melee_1 = { 
 
-	--3x Tango
-	"item_tango",
-	"item_tango",
-	"item_tango",
-	--270g
-	
 	"item_stout_shield",
-	--470g
+	--200g
 	
 	"item_branches",
 	"item_branches",
-	--570g
+	--300g
 
 };
+
+ItemBuild_Default.items_Carry_Melee_1a_Hp = { 
+	--"item_flask",
+	"item_tango",
+	"item_tango",
+	--180g
+};
+ItemBuild_Default.items_Carry_Melee_1a_Mana = { 
+	"item_enchanted_mango",
+	"item_enchanted_mango",
+	"item_clarity",
+	--190g
+	
+	"item_bottle",
+};
+
 
 ItemBuild_Default.items_Carry_Melee_2_Quelling = { 
 	"item_quelling_blade",
@@ -330,20 +411,18 @@ ItemBuild_Default.items_Carry_Melee_2_Stats_Str = {
 
 };
 ItemBuild_Default.items_Carry_Melee_2_Stats_Agi = { 
-
-	-- 2x Wraith Bands
-	"item_slippers",
-	"item_slippers",
-	
 	-- Magic Stick
 	"item_magic_stick",
 	
+	-- 2x Wraith Bands
 	"item_circlet",
+	"item_circlet",
+	
+	"item_slippers",
 	"item_recipe_wraith_band",
 	
-	"item_circlet",
-	"item_recipe_wraith_band",
-	
+	"item_slippers",
+	"item_recipe_wraith_band",	
 };
 
 ItemBuild_Default.items_Carry_Melee_3 = { 
@@ -362,6 +441,24 @@ ItemBuild_Default.items_Carry_Melee_4_PhaseBoots = {
 ItemBuild_Default.items_Carry_Melee_4_PowerTreads = { 
 	"item_belt_of_strength",
 	"item_gloves",	
+};
+
+ItemBuild_Default.items_Carry_Melee_4a_Vlads = { 
+	-- Basi:
+	"item_ring_of_protection",	
+	"item_sobi_mask",
+	
+	"item_lifesteal",	
+	"item_recipe_vladmir",	
+};
+ItemBuild_Default.items_Carry_Melee_4a_HelmDom = { 
+	-- Headdress:
+	"item_ring_of_regen",
+	"item_branches",
+	"item_recipe_headdress",
+	
+	"item_gloves",		
+	"item_ring_of_health",
 };
 
 ItemBuild_Default.items_Carry_Melee_5_MomBasher = { 
@@ -387,43 +484,65 @@ ItemBuild_Default.items_Carry_Melee_6 = {
 	-- Desolator :
 	"item_mithril_hammer",
 	"item_mithril_hammer",
-	--"item_blight_stone",	
+	"item_blight_stone",	
+	
+	--MKB:
+	"item_demon_edge",
+	"item_javelin",
+	"item_quarterstaff",
 				
 };
 
 
 
 
-
 ItemBuild_Default.items_Caster_1 = { 
-
-	--2x Flask
-	"item_flask",	
-	"item_flask",
 	
+	"item_enchanted_mango",
+	"item_enchanted_mango",
+	"item_enchanted_mango",
+	--210g
+	
+	"item_branches",
+	"item_branches",
+	--310g
+
+};
+ItemBuild_Default.items_Caster_1a_Clarity = { 
 	--2x Clarity
 	"item_clarity",
 	"item_clarity",
-	--320g
-	
-	"item_enchanted_mango",
-	"item_enchanted_mango",
-	"item_enchanted_mango",
-	"item_enchanted_mango",
-	--600g
-
 };
+ItemBuild_Default.items_Caster_1a_Salve = { 	
+	--2x Flask
+	"item_flask",	
+	"item_flask",	
+};
+ItemBuild_Default.items_Caster_1a_ClaritySalve = { 
+	"item_clarity",
+	"item_flask",	
+};
+
 ItemBuild_Default.items_Caster_2 = { 
 
+	-- Sage Mask:
+	"item_sobi_mask",
+	-- "item_ring_of_protection",	
+	
+	"DELIVER_NOW",
+
 	"item_magic_stick",	
-	"item_boots",
 	"item_bottle",
-	"item_infused_raindrop",	
+	"item_boots",		
 	
 	-- Wand Complete:	
-	"item_branches",
-	"item_branches",
+	-- "item_branches",
+	-- "item_branches",
 	"item_recipe_magic_wand",
+	
+	"DELIVER_NOW",
+	
+	-- "item_infused_raindrop",	
 
 };
 
@@ -441,21 +560,31 @@ ItemBuild_Default.items_Caster_3_TranquilBoots = {
 
 ItemBuild_Default.items_Caster_4 = { 
 
-	-- Veil
+	-- Drums
+	"item_wind_lace",
+	-- "item_sobi_mask",
 	"item_crown",
-	"item_helm_of_iron_will",	
-	"item_recipe_veil_of_discord",
+	"item_recipe_ancient_janggo",
+	
+	-- Glimmer
+	"item_shadow_amulet",
+	"item_cloak",
+
+	-- Veil
+	-- "item_crown",
+	-- "item_helm_of_iron_will",	
+	-- "item_recipe_veil_of_discord",
 	
 	-- Kaya:
-	"item_staff_of_wizardry",
-	"item_robe",
-	"item_recipe_kaya",
+	-- "item_staff_of_wizardry",
+	-- "item_robe",
+	-- "item_recipe_kaya",
 
 	-- Euls:
-	"item_staff_of_wizardry",	
-	"item_void_stone",												
-	"item_wind_lace",
-	"item_recipe_cyclone",
+	-- "item_staff_of_wizardry",	
+	-- "item_void_stone",												
+	-- "item_wind_lace",
+	-- "item_recipe_cyclone",
 	
 	-- Atos :
 	"item_staff_of_wizardry",
@@ -471,10 +600,28 @@ ItemBuild_Default.items_Caster_4 = {
 };
 
 
-
-function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode )
+function ItemBuild_Default.InitTable_Auras( heroItems )
+	ConcatLists( heroItems, ItemBuild_Default.items_Auras_1 );	
+	ConcatLists( heroItems, ItemBuild_Default.items_Auras_2 );	
+	
+	--ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
+	--ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
+	
+	ConcatLists( heroItems, ItemBuild_Default.items_Auras_5 );	
+	
+	-- Log :
+	LogItemBuild( "'Auras'" );
+end
+function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode, manaMode )
 	
 	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1 );
+	
+	if manaMode==1 then
+		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Mana );
+	else
+		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Hp );
+	end	
+	
 	
 	if statsMode==0 then
 		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Quelling );
@@ -486,34 +633,54 @@ function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode )
 		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Agi );
 	end
 		
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );
-	
+	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
 	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
+	
+	if auraMode~=nil then
+		if auraMode==1 then
+			ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_Vlads );
+		end
+		if auraMode==2 then
+			ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_HelmDom );
+		end
+	end
+	
 	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_5_MomBasher );
 	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_6 );
 	
-	-- Debug Log :
-	npcBot = GetBot();
-	local introChat = "ITEM_BUILD '".. npcBot:GetUnitName() .."' = 'Carry_Melee' - Mode = " .. statsMode;	
-	print(introChat);
-	npcBot:ActionImmediate_Chat( introChat ,true);
+	
+	-- Log :
+	LogItemBuild( "'Carry_Melee'" );
 	
 	return heroItems;
 end
-function ItemBuild_Default.InitTable_Caster_ManaBoots( heroItems )
+function ItemBuild_Default.InitTable_Caster_ManaBoots( heroItems, regenMode )
 	
 	ConcatLists( heroItems, ItemBuild_Default.items_Caster_1 );
+	
+	if regenMode~=nil and regenMode==1 then
+		ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Salve );	
+	else
+		--ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Clarity );	
+		ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_ClaritySalve );			
+	end
+	
 	ConcatLists( heroItems, ItemBuild_Default.items_Caster_2 );
 	ConcatLists( heroItems, ItemBuild_Default.items_Caster_3_ManaBoots );
 	ConcatLists( heroItems, ItemBuild_Default.items_Caster_4 );
 	
-	-- Debug Log :
-	npcBot = GetBot();
-	local introChat = "ITEM_BUILD '".. npcBot:GetUnitName() .."' = 'Caster_ManaBoots'";	
-	print(introChat);
-	npcBot:ActionImmediate_Chat( introChat ,true);
+	
+	-- Log :
+	LogItemBuild( "'Caster_ManaBoots'" );
 	
 	return heroItems;
+end
+
+function LogItemBuild( buildName )
+	npcBot = GetBot();
+	local introChat = "ITEM_BUILD '".. npcBot:GetUnitName() .."' = " .. buildName;	
+	print(introChat);
+	npcBot:ActionImmediate_Chat( introChat ,true);
 end
 
 
