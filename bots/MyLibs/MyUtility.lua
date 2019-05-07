@@ -510,10 +510,11 @@ function MyUtility.AnalyseContext()
 end
 
 itemsToSell = {
+	"item_enchanted_mango",
 	"item_flask",
 	"item_clarity",
-
 	"item_tango",
+	
 	"item_stout_shield",
 	"item_quelling_blade",
 };
@@ -676,6 +677,9 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 end
 
 
-
+function MyUtility.ConcatLists( list1, list2)
+	local list1_L = table.getn( list1 );
+	for _,item in ipairs(list2) do list1_L=list1_L+1; list1[list1_L] = item; end
+end
 
 return MyUtility;

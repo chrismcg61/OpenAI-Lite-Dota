@@ -1,5 +1,10 @@
 ItemBuild_Default={};
 
+------------------------------------------------------------
+--- INCLUDES
+------------------------------------------------------------
+MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")
+
 ---------------------------------------------
 -- All Item Names :
 ---------------------------------------------
@@ -498,14 +503,14 @@ ItemBuild_Default.items_Carry_Melee_6 = {
 
 ItemBuild_Default.items_Caster_1 = { 
 	
+	--"item_enchanted_mango",
 	"item_enchanted_mango",
 	"item_enchanted_mango",
-	"item_enchanted_mango",
-	--210g
+	--140g
 	
 	"item_branches",
 	"item_branches",
-	--310g
+	--240g
 
 };
 ItemBuild_Default.items_Caster_1a_Clarity = { 
@@ -601,52 +606,52 @@ ItemBuild_Default.items_Caster_4 = {
 
 
 function ItemBuild_Default.InitTable_Auras( heroItems )
-	ConcatLists( heroItems, ItemBuild_Default.items_Auras_1 );	
-	ConcatLists( heroItems, ItemBuild_Default.items_Auras_2 );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Auras_1 );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Auras_2 );	
 	
-	--ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
-	--ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
+	--MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
+	--MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
 	
-	ConcatLists( heroItems, ItemBuild_Default.items_Auras_5 );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Auras_5 );	
 	
 	-- Log :
 	LogItemBuild( "'Auras'" );
 end
 function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode, manaMode )
 	
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1 );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1 );
 	
 	if manaMode==1 then
-		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Mana );
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Mana );
 	else
-		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Hp );
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Hp );
 	end	
 	
 	
 	if statsMode==0 then
-		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Quelling );
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Quelling );
 	end
 	if statsMode==1 then
-		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Str );
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Str );
 	end
 	if statsMode==2 then
-		ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Agi );
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Agi );
 	end
 		
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );
 	
 	if auraMode~=nil then
 		if auraMode==1 then
-			ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_Vlads );
+			MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_Vlads );
 		end
 		if auraMode==2 then
-			ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_HelmDom );
+			MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_HelmDom );
 		end
 	end
 	
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_5_MomBasher );
-	ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_6 );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_5_MomBasher );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_6 );
 	
 	
 	-- Log :
@@ -656,18 +661,18 @@ function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode
 end
 function ItemBuild_Default.InitTable_Caster_ManaBoots( heroItems, regenMode )
 	
-	ConcatLists( heroItems, ItemBuild_Default.items_Caster_1 );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1 );
 	
 	if regenMode~=nil and regenMode==1 then
-		ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Salve );	
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Salve );	
 	else
-		--ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Clarity );	
-		ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_ClaritySalve );			
+		--MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Clarity );	
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_ClaritySalve );			
 	end
 	
-	ConcatLists( heroItems, ItemBuild_Default.items_Caster_2 );
-	ConcatLists( heroItems, ItemBuild_Default.items_Caster_3_ManaBoots );
-	ConcatLists( heroItems, ItemBuild_Default.items_Caster_4 );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_2 );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_3_ManaBoots );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_4 );
 	
 	
 	-- Log :
@@ -684,10 +689,7 @@ function LogItemBuild( buildName )
 end
 
 
-function ConcatLists( list1, list2)
-	local list1_L = table.getn( list1 );
-	for _,item in ipairs(list2) do list1_L=list1_L+1; list1[list1_L] = item; end
-end
+
 
 
 ----------------------------------------------------------------------------------------------------

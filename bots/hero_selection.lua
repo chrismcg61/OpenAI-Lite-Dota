@@ -2,6 +2,11 @@
 -- FILE : hero_selection.lua
 ---------------------------------------------------------------------  
   
+------------------------------------------------------------
+--- INCLUDES
+------------------------------------------------------------
+MyUtility = require( GetScriptDirectory().."/MyLibs/MyUtility")  
+  
 ---------------------------------------------------------------------
 -- Config :
 ---------------------------------------------------------------------
@@ -9,15 +14,27 @@ autoPick_PlayerHero = "";
 --autoPick_PlayerHero = "npc_dota_hero_sven";
 --autoPick_PlayerHero = "npc_dota_hero_crystal_maiden";
 
-allyHeroes = {
-	
-	"npc_dota_hero_crystal_maiden",		
-	"npc_dota_hero_lina",	
-	
-	"npc_dota_hero_phantom_assassin",	
-	"npc_dota_hero_tusk",
-	
+commonHeroes = {
+	"npc_dota_hero_crystal_maiden",
+	"npc_dota_hero_earthshaker",
 	"npc_dota_hero_bane",
+};
+
+allyHeroes = {
+	"npc_dota_hero_lina",	
+	"npc_dota_hero_phantom_assassin",	
+	--"npc_dota_hero_tusk",
+};
+MyUtility.ConcatLists( allyHeroes, commonHeroes );
+
+ennemyHeroes = {			
+	"npc_dota_hero_windrunner",				
+	"npc_dota_hero_tiny",
+};
+MyUtility.ConcatLists( ennemyHeroes, commonHeroes );
+
+heroList1 = {	
+	
 	--"npc_dota_hero_warlock",
 	-- "npc_dota_hero_meepo",
 	
@@ -38,18 +55,7 @@ allyHeroes = {
 	--"npc_dota_hero_phantom_assassin",	
 	--"npc_dota_hero_juggernaut",		
 }
-ennemyHeroes = {
-
-	--"npc_dota_hero_lina",	
-	
-	"npc_dota_hero_crystal_maiden",			
-	"npc_dota_hero_windrunner",
-	
-	"npc_dota_hero_earthshaker",		
-	"npc_dota_hero_tiny",
-	
-	"npc_dota_hero_bane",
-	
+heroList2 = {
 	
 	--- OpenAIs:
 	--"npc_dota_hero_meepo",	
@@ -99,7 +105,6 @@ ennemyHeroes = {
 	-- "npc_dota_hero_abaddon",
 
 }
-  
 allyHeroes2 = {
 	"npc_dota_hero_pugna",
 	"npc_dota_hero_death_prophet",
