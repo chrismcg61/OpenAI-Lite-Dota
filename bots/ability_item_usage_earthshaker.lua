@@ -30,16 +30,15 @@ contexts = {};
 -- earthshaker_enchant_totem
 -- earthshaker_aftershock
 -- earthshaker_echo_slam
--- special_bonus_strength_10
--- special_bonus_mp_250
--- special_bonus_movement_speed_20
--- special_bonus_attack_damage_50
--- special_bonus_unique_earthshaker_2
--- special_bonus_respawn_reduction_35
--- special_bonus_hp_600
--- special_bonus_unique_earthshaker
+
+-- special_bonus_magic_resistance_50
+
 abilitiesEarlyLvls = {  "earthshaker_fissure",  "earthshaker_aftershock", "earthshaker_enchant_totem" };
 abilitiesPriority = {  "earthshaker_echo_slam",  "earthshaker_fissure", "earthshaker_enchant_totem",  "earthshaker_aftershock"};
+
+talents = {"special_bonus_mp_250","special_bonus_movement_speed_30","special_bonus_armor_7", "special_bonus_unique_earthshaker","special_bonus_unique_earthshaker_1","special_bonus_unique_earthshaker_2","special_bonus_unique_earthshaker_3","special_bonus_unique_earthshaker_4"};
+bTalents = {0,0,0,0};
+
 AoeID = "ES_Q";
 --AoeID2 = "TINY_W";
 AoeID_Configs = {
@@ -145,6 +144,10 @@ function ItemUsageThink()
 	MyUtility.UseItems(botStatus);
 end
 
+function CourierUsageThink()
+	MyUtility.UseCour();
+end
+
 function AbilityUsageThink()	
 
 	initBotMode = OpenAI_Ability_Custom.Init_Intel(initBotMode, InitTable);
@@ -169,6 +172,8 @@ function AbilityLevelUpThink()
 			return;
 		end
 	end
+	
+	MyGenericAbility.TalentLvl(npcBot, bTalents, talents);
 	
 	listLength = table.getn( abilitiesPriority );		
 	for i=1,listLength,1 do

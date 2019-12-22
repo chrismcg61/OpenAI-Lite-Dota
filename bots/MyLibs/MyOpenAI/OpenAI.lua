@@ -38,6 +38,7 @@ function CreateNewContext(newCtxData, const)
 	newContext["data"] = newCtxData;
 	newContext["SCO"] = const["maxMisses"] * const["minScore"];
 	newContext["NBS"] = 1;
+	newContext["MIS"] = 0;
 	return newContext;
 end
 
@@ -50,6 +51,7 @@ function OpenAI.PrintCtx(ctxList, abilityName)
 	for i, ctx in ipairs(ctxList) do		
 		ctxStr = ctxStr.."SCO".."_"..ctx["SCO"]..",";
 		ctxStr = ctxStr.."NBS".."_"..ctx["NBS"]..",";
+		-- ctxStr = ctxStr.."MIS".."_"..ctx["MIS"]..",";
 		for j,_ in pairs(ctx["data"]) do
 			ctxStr = ctxStr..j.."_"..ctx["data"][j]..",";
 		end
@@ -63,6 +65,7 @@ function OpenAI.InitTableFromStr(ctxStr)
 	for ctx in string.gmatch(ctxStr, "([^|]+)") do 
 		local ctxFromStr = {};
 		ctxFromStr["data"] = {};
+		ctxFromStr["MIS"] = 0;
 		
 		for ctxDataPairs in string.gmatch(ctx, "([^,]+)") do 
 			local keyDataPair = {};
@@ -76,6 +79,8 @@ function OpenAI.InitTableFromStr(ctxStr)
 				ctxFromStr["SCO"] = tonumber( keyDataPair[2] );
 			elseif keyDataPair[1] == "NBS" then
 				ctxFromStr["NBS"] = tonumber( keyDataPair[2] );
+			-- elseif keyDataPair[1] == "MIS" then
+				-- ctxFromStr["MIS"] = tonumber( keyDataPair[2] );
 			else
 				ctxFromStr["data"][ keyDataPair[1] ] = tonumber( keyDataPair[2] );
 			end

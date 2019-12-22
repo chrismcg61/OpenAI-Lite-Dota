@@ -21,6 +21,7 @@ const["rangeMax"] = 1200;
 const["creepAoe"] = 500;
 const["minScore"] = 5.0;
 const["maxMisses"] = 4;
+const["hiMiss"] = const["maxMisses"]-1;  -- math.floor( const["maxMisses"]/2 );
 const["lhScore"] = 20.0;
 const["heroDmgScore"] = 25.0;
 const["assistScore"] = 50.0;
@@ -112,6 +113,7 @@ function OpenAI_Ability.InitVars( var, contextIds )
 	var["lastAbilityDeltaT"] = 0;
 	var["prevScore"] = 0;
 	var["lastAbilityDmg"] = 0;
+	var["lastAbilityId"] = "";
 
 	var["foundCtx"] = {};
 	var["lastId"] = contextIds[1]; 
@@ -243,6 +245,7 @@ function TryAbility( abilityDesc, abId )
 	var["lastAbilityDeltaT"] = abilityDesc["DELTA_T"];
 	
 	var["prevScore"] = GetScore();
+	var["lastAbilityId"] = abId;
 	
 	npcBot:Action_UseAbilityOnLocation( ability, target );
 end
@@ -262,21 +265,39 @@ function EvalLastAbility()
 	var["foundCtx"]["SCO"] = (var["foundCtx"]["SCO"]*var["foundCtx"]["NBS"] + deltaScore) / (var["foundCtx"]["NBS"]+1);	
 	var["foundCtx"]["SCO"] = math.floor( var["foundCtx"]["SCO"]*decimalApprox ) / decimalApprox;
 	var["foundCtx"]["NBS"] = var["foundCtx"]["NBS"] + 1;	
+
+	-- Reset Score after several Misses, for Initially validated Actions :
+	if var["foundCtx"]["MIS"] == const["hiMiss"] then	
+		var["foundCtx"]["MIS"] = 0;	
+	end
+	if deltaScore < 1  and  var["foundCtx"]["NBS"] > const["maxMisses"]  then  -- 
+		var["foundCtx"]["MIS"] = var["foundCtx"]["MIS"] + 1;	
+	else 
+		var["foundCtx"]["MIS"] = 0;	
+	end
+	
+	if var["foundCtx"]["MIS"] == const["hiMiss"] then	
+		-- var["foundCtx"]["MIS"] = 0;	
+		var["foundCtx"]["NBS"] = 1;
+		var["foundCtx"]["SCO"] = const["hiMiss"] * const["minScore"];
+	end
 	
 	-- DEBUG CHAT :
 	local logStr = "OpenAI Ability Score = ";
 	--npcBot:ActionImmediate_Chat( logStr ,true);	
 	
-	logStr = "S: "..deltaScore .." | ";
-	logStr = logStr .. "Avg:"..var["foundCtx"]["SCO"] .." | ";
-	logStr = logStr .. "N:"..var["foundCtx"]["NBS"] .." | ";	
+	logStr = "S:".. math.floor(deltaScore) .."|";
+	logStr = logStr .. "Avg:"..var["foundCtx"]["SCO"] .."|";
+	logStr = logStr .. "N:"..var["foundCtx"]["NBS"] .."|";	
+	logStr = logStr .. "Mis:"..var["foundCtx"]["MIS"] .."|";	
+	logStr = logStr ..  var["lastAbilityId"] .."|";		
 	--npcBot:ActionImmediate_Chat( logStr ,true);	
 	
-	logStr = logStr .. " |__| ";
+	logStr = logStr .. "_|";
 	
 	--logStr = "";
 	for _,ctxScore in pairs( ctxScores ) do
-		logStr = logStr .. ctxScore["ID"]..":".. newScore[ ctxScore["ID"] ] .. " | ";
+		logStr = logStr .. ctxScore["ID"]..":".. newScore[ ctxScore["ID"] ] .. "|";
 	end	
 	npcBot:ActionImmediate_Chat( logStr ,true);	
 	

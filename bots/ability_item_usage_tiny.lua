@@ -30,16 +30,25 @@ contexts = {};
 -- tiny_toss
 -- tiny_craggy_exterior   -- tiny_tree_grab   	
 -- tiny_grow
--- special_bonus_strength_6
--- special_bonus_intelligence_12
--- special_bonus_attack_damage_60
--- special_bonus_movement_speed_35
--- special_bonus_attack_speed_25
--- special_bonus_mp_regen_14
--- special_bonus_cooldown_reduction_20
--- special_bonus_unique_tiny
-abilitiesEarlyLvls = {  "tiny_avalanche",  "tiny_craggy_exterior", };
-abilitiesPriority = {  "tiny_avalanche",  "tiny_toss", "tiny_craggy_exterior",  "tiny_grow"};
+
+-- special_bonus_movement_speed_20
+-- special_bonus_attack_damage_30
+
+-- "special_bonus_hp_400",
+
+-- special_bonus_strength_20
+
+-- "special_bonus_unique_tiny_1",
+-- "special_bonus_unique_tiny_2",
+-- "special_bonus_unique_tiny_3",
+-- "special_bonus_unique_tiny_4",
+
+abilitiesEarlyLvls = {  "tiny_avalanche",  "tiny_tree_grab", };
+abilitiesPriority = {  "tiny_avalanche",  "tiny_toss", "tiny_tree_grab",  "tiny_grow"};
+
+talents = {"special_bonus_movement_speed_20","special_bonus_hp_400","special_bonus_strength_20",  "special_bonus_unique_tiny_1","special_bonus_unique_tiny_2","special_bonus_unique_tiny_3","special_bonus_unique_tiny_4"};
+bTalents = {0,0,0,0};
+
 AoeID = "TINY_Q";
 --AoeID2 = "TINY_W";
 AoeID_Configs = {
@@ -91,7 +100,7 @@ abilityList_Basic = {
 	},
 	["E"]=
 	{
-		["NAME"]="tiny_craggy_exterior",
+		["NAME"]="tiny_tree_grab",
 		["TARGET_TYPE"]= MyGenericAbility.TARGET_TREE,
 	},
 };
@@ -154,6 +163,10 @@ function ItemUsageThink()
 	MyUtility.UseItems(botStatus);
 end
 
+function CourierUsageThink()
+	MyUtility.UseCour();
+end
+
 function AbilityUsageThink()	
 
 	initBotMode = OpenAI_Ability_Custom.Init_Intel(initBotMode, InitTable);
@@ -170,6 +183,11 @@ end
 
 function AbilityLevelUpThink()
 	if npcBot:GetAbilityPoints()==0 then return; end	
+	
+	-- if npcBot:GetLevel() == 19 then
+		-- AbilityLevelUpThink=nil; --Revert to C++ Default API	
+		-- return;
+	-- end
 		
 	local listLength = table.getn( abilitiesEarlyLvls );		
 	for i=1,listLength,1 do
@@ -178,6 +196,8 @@ function AbilityLevelUpThink()
 			return;
 		end
 	end
+	
+	MyGenericAbility.TalentLvl(npcBot, bTalents, talents);
 	
 	listLength = table.getn( abilitiesPriority );		
 	for i=1,listLength,1 do

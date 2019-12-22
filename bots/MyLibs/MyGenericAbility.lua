@@ -86,11 +86,11 @@ function MyGenericAbility.ConsiderAbility_Mode( ability, mode, const )
 			local ennemyHP = npcTarget:GetHealth();
 			if(ennemyHP > 0  and  GetUnitToLocationDistance(npcBot, npcTarget:GetLocation()) < range) then   --and  ennemyHP < npcTarget:GetMaxHealth()*0.5
 				
-				npcBot:ActionImmediate_Chat( 
-					"Ability : " .. ability:GetName()
-					.. " - Mode = " .. mode
-					.. " - Range = " .. range
-					, true);
+				-- npcBot:ActionImmediate_Chat( 
+					-- "Ability : " .. ability:GetName()
+					-- .. " - Mode = " .. mode
+					-- .. " - Range = " .. range
+					-- , true);
 					
 				if(mode == MyGenericAbility.TARGET_NONE)then 
 					npcBot:Action_UseAbility( ability ); 
@@ -127,6 +127,42 @@ end
 
 function CanCastAbilityOnTarget( npcTarget )
 	return npcTarget:CanBeSeen() and not npcTarget:IsMagicImmune() and not npcTarget:IsInvulnerable();
+end
+
+
+
+function MyGenericAbility.TalentLvl(_npcBot, _bTalents, _talents)		
+	heroLvl = _npcBot:GetLevel();
+	if (heroLvl == 10)or(heroLvl == 15)or(heroLvl == 20)or(heroLvl == 25) then	
+		talentId = (heroLvl-10)/5 +1;
+		if _bTalents[talentId]==0 then
+			_bTalents[talentId]=1;			
+			for _,talent in pairs( _talents ) do					
+				bOk, retVal = pcall(TalentLvl_Try, talent, _npcBot);
+				if bOk then
+					if retVal then
+						--return;
+					end
+				else
+					print("Talent Error : " .. retVal);
+				end
+			end	
+			
+		end
+	end		
+end
+function TalentLvl_Try( talent, _npcBot )	
+	bActive = _npcBot:GetAbilityByName( talent ):GetLevel();	
+	--bUpgradable = _npcBot:GetAbilityByName( talent ):CanAbilityBeUpgraded();	
+	--nMaxLvl = _npcBot:GetAbilityByName( talent ):GetMaxLevel();
+	--talentReqLvl = _npcBot:GetAbilityByName( talent ):GetHeroLevelRequiredToUpgrade();			
+	if(bActive==0)then	  --(heroLvl >= talentReqLvl)   -- (bUpgradable)and
+		print("Talent Active = " .. bActive);			
+		nilRetVal = _npcBot:ActionImmediate_LevelAbility( talent ); 
+		--return true;
+	else
+		--return false;
+	end	
 end
 
 

@@ -167,7 +167,7 @@ function OpenAI_Ability_Custom.InitCtx_Params_Scores( )
 			end,
 	};
 	ctxScores["STUNS"] = {
-		["ID"]="STUNS",
+		["ID"]="CC",
 		["SCORE"]= 50.0,
 		["FUNC"]= 
 			function ()
@@ -184,7 +184,7 @@ function OpenAI_Ability_Custom.InitCtx_Params_Scores( )
 			end,
 	};
 	ctxScores["HeroDmg"] = {
-		["ID"]="HeroDmg",
+		["ID"]="HDmg",
 		["SCORE"]= 0.1,
 		["FUNC"]= 
 			function ()

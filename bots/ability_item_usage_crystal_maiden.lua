@@ -30,16 +30,26 @@ contexts = {};
 -- crystal_maiden_frostbite
 -- crystal_maiden_brilliance_aura
 -- crystal_maiden_freezing_field
--- special_bonus_magic_resistance_15
--- special_bonus_attack_damage_60
--- special_bonus_cast_range_125
+
 -- special_bonus_hp_250
--- special_bonus_gold_income_20
--- special_bonus_respawn_reduction_35
--- special_bonus_unique_crystal_maiden_1
--- special_bonus_unique_crystal_maiden_2
+-- special_bonus_cast_range_100
+
+-- special_bonus_gold_income_150
+-- special_bonus_unique_crystal_maiden_4  -- L15: E Aura
+
+-- special_bonus_unique_crystal_maiden_3  -- L20: R Dmg
+-- special_bonus_attack_speed_250
+
+-- special_bonus_unique_crystal_maiden_1  -- L25: W Duration
+-- special_bonus_unique_crystal_maiden_2  -- L25: Q Dmg
+
+
 abilitiesEarlyLvls = {  "crystal_maiden_crystal_nova",  "crystal_maiden_brilliance_aura", "crystal_maiden_brilliance_aura", "crystal_maiden_frostbite", };
-abilitiesPriority = {  "crystal_maiden_freezing_field",  "crystal_maiden_brilliance_aura", "crystal_maiden_crystal_nova",  "crystal_maiden_frostbite"};
+abilitiesPriority = { "crystal_maiden_freezing_field",  "crystal_maiden_brilliance_aura", "crystal_maiden_crystal_nova",  "crystal_maiden_frostbite"};
+
+talents = {"special_bonus_hp_250","special_bonus_gold_income_150","special_bonus_attack_speed_250", "special_bonus_unique_crystal_maiden_1","special_bonus_unique_crystal_maiden_2","special_bonus_unique_crystal_maiden_3","special_bonus_unique_crystal_maiden_4"};
+bTalents = {0,0,0,0};
+
 AoeID = "CM_Q";
 --AoeID2 = "TINY_W";
 AoeID_Configs = {
@@ -154,6 +164,10 @@ function ItemUsageThink()
 	MyUtility.UseItems(botStatus);
 end
 
+function CourierUsageThink()
+	MyUtility.UseCour();
+end
+
 function AbilityUsageThink()	
 
 	initBotMode = OpenAI_Ability_Custom.Init_Intel(initBotMode, InitTable);
@@ -168,8 +182,10 @@ function AbilityUsageThink()
 	
 end
 
+--talentId = 0;
 function AbilityLevelUpThink()
-	if npcBot:GetAbilityPoints()==0 then return; end	
+	--AbilityLevelUpThink=nil;
+	if npcBot:GetAbilityPoints()==0 then return; end		
 		
 	local listLength = table.getn( abilitiesEarlyLvls );		
 	for i=1,listLength,1 do
@@ -178,6 +194,8 @@ function AbilityLevelUpThink()
 			return;
 		end
 	end
+	
+	MyGenericAbility.TalentLvl(npcBot, bTalents, talents);
 	
 	listLength = table.getn( abilitiesPriority );		
 	for i=1,listLength,1 do
@@ -188,6 +206,9 @@ function AbilityLevelUpThink()
 	end
 	
 end
+
+
+
 
 
 

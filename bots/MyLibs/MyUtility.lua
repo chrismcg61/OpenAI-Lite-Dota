@@ -40,6 +40,7 @@ dominateCreepTarget = nil;
 --- CONSTs
 ------------------------------------------------------------
 MyUtility.const = {};
+MyUtility.const["laneEndT"] = 11*60;
 MyUtility.const["maxCastRange"] = 1600;
 MyUtility.const["safeDistHi"] = 1200;
 MyUtility.const["safeDistLo"] = 800;
@@ -54,7 +55,7 @@ MyUtility.const["safeRegenTime"] = 3.0;
 MyUtility.shopLocations = {};
 MyUtility.shopLocations["SIDE_SHOP_BOT"] = Vector(7249,-4113);
 MyUtility.shopLocations["SIDE_SHOP_TOP"] = Vector(-7220,4430);
-MyUtility.shopLocations["SECRET_SHOP_RADIANT"] = Vector(-4472,1328);
+MyUtility.shopLocations["SECRET_SHOP_RADIANT"] = Vector(-4950,1900);  --Vector(-4472,1328);
 MyUtility.shopLocations["SECRET_SHOP_DIRE"] = Vector(4586,-1588);
 
 
@@ -75,27 +76,63 @@ function MyUtility.HasItem(item_name)
     end
     return nil;
 end
+function MyUtility.DropTeamItems( )
+    local npcBot = GetBot();
+	-- 0-5[Inv], 6-9[Backpack], 10-15[Stash], 16[TP]
+    for i = 0, 16, 1 do
+        local item = npcBot:GetItemInSlot(i);
+		if(item~=nil)then
+			local itemName = item:GetName();
+			local itemVal = GetItemCost(itemName);
+			local slotType = npcBot:GetItemSlotType(i);
+			if(itemVal<10  and  slotType==ITEM_SLOT_TYPE_BACKPACK)then
+				npcBot:Action_DropItem( item, npcBot:GetLocation() );
+				local str = "Dropping = " .. itemName  ..  " - Val = " .. itemVal;
+				npcBot:ActionImmediate_Chat( str, true);
+				--return item;
+			end
+		end		
+    end
+    return nil;
+end
 function MyUtility.IsItemAvailable(item_name)
     local npcBot = GetBot();
 
 	local itemCount = 0;
+	local usableItem = nil;
+	local usableCharges = 0;
     for i = 16, 0, -1 do
         local item = npcBot:GetItemInSlot(i);
 		if (item~=nil and  item:GetName()==item_name) then 
-			itemCount = itemCount + item:GetCurrentCharges();
-		end
-		
-		if  i>5  and  item_name~="item_tpscroll"  then
-			item=nil;
-		end
-		
-		if (item~=nil) then
-			if(item and  item:GetName()==item_name  and  item:IsFullyCastable()) then  --and  npcBot:GetItemSlotType(i)~=ITEM_SLOT_TYPE_STASH
-				return item, itemCount;
+			local curItemCharges = item:GetCurrentCharges();
+			itemCount = itemCount + curItemCharges;
+						
+			-- 0-5[Inv], 6-9[Backpack], 10-15[Stash], 16[TP]
+			if (i<=5 or i==16) and  item:IsFullyCastable() then 
+			--if item:IsFullyCastable() then 
+				usableItem = item;
+				usableCharges = curItemCharges;
 			end
-		end
+			
+			-- if item_name=="item_tpscroll"  then  
+				-- npcBot:ActionImmediate_Chat( "TP slot = " .. i , true);
+			-- end
+		end		
+		
+		--[[
+		-- if  i>5  and  item_name~="item_tpscroll"  then
+			-- item=nil;
+		-- end
+		
+		-- if (item~=nil) then
+			-- if(item and  item:GetName()==item_name  and  item:IsFullyCastable()) then  --and  npcBot:GetItemSlotType(i)~=ITEM_SLOT_TYPE_STASH
+				-- return item, itemCount, curItemCharges;
+			-- end
+		-- end
+		--]]
     end
-    return nil;
+	return usableItem, itemCount, usableCharges;
+    -- return nil;
 end
 function MyUtility.GetCenter(Heroes)
 	if Heroes==nil or #Heroes==0 then
@@ -185,9 +222,9 @@ function MyUtility.UseSingleItem(itemName, itemMod, target, minCharges, tree)
 	-- Always Renew Clarities/Salves:	
 	------------------------------------------------------------
 	if  alwaysCarryRegen==true
-	and DotaTime() < 60*15 
+	and DotaTime() < MyUtility.const["laneEndT"] 
 	and (itemName == "item_clarity" or itemName == "item_flask") 
-	and itemCount <= 2
+	and itemCount <= 1
 	then
 		if ( npcBot:GetGold() >= GetItemCost( itemName ) )  then
 			npcBot:ActionImmediate_PurchaseItem( itemName );  --PURCHASE_ITEM_SUCCESS
@@ -201,20 +238,53 @@ function MyUtility.UseSingleItem(itemName, itemMod, target, minCharges, tree)
 	------------------------------------------------------------
 	-- Targeted Items :
 	------------------------------------------------------------
-	npcBot:ActionImmediate_Chat( "ITEM : "..itemName , false);
+	-- npcBot:ActionImmediate_Chat( "ITEM : "..itemName , false);
 	npcBot:Action_UseAbilityOnEntity( item,  target);	
 	
 	return true;	
 end
 
 function MyUtility.InitStatus( _botStatus )
-	_botStatus["lastEnnemySight"] = RealTime();
+	_botStatus["lastEnnemySight"] = 0;  --RealTime();
 	_botStatus["abilityMode"] = 0;
+end
+
+function MyUtility.UseCour()
+	local npcBot = GetBot();	
+	-- for i = 0, 4, 1 do
+		-- local courier = GetCourier(i);
+		-- local stashVal = npcBot:GetStashValue();
+		-- if( npcBot:IsAlive()  and  stashVal>=50
+		-- and IsCourierAvailable() )
+		-- --and GetCourierState( courier ) == COURIER_STATE_AT_BASE )
+		-- then
+			-- npcBot:ActionImmediate_Chat( "Cour Use Value = " .. stashVal , true);
+			-- npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS );  --  COURIER_ACTION_SECRET_SHOP
+		-- end
+	-- end	
+	
+	local playerId = npcBot:GetPlayerID();
+	local courier = GetCourier( playerId );
+	local stashVal = npcBot:GetStashValue();
+	if( 
+		npcBot:IsAlive()  and  
+		stashVal>=50  and
+		--IsCourierAvailable()
+		GetCourierState( courier ) == COURIER_STATE_AT_BASE 
+	)
+	then
+		--npcBot:ActionImmediate_Chat( "Cour Use Value = " .. stashVal , true);
+		--npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS );  --  COURIER_ACTION_SECRET_SHOP
+	end
 end
 
 function MyUtility.UseItems( _botStatus )
 	local npcBot=GetBot();
-	if(_botStatus~=nil) then botStatus = _botStatus; end
+	
+	MyUtility.InitStatus( botStatus );
+	if(_botStatus~=nil) then 
+		botStatus = _botStatus;		
+	end
 	
 	if npcBot:IsIllusion() then  return;  end
 	
@@ -227,6 +297,8 @@ function MyUtility.UseItems( _botStatus )
 	------------------------
 	
 	if MyUtility.UseSingleItem( "item_courier", "-", nil, 0) then return; end
+	if MyUtility.UseSingleItem( "item_tome_of_knowledge", "-", nil, 0) then return; end
+	if MyUtility.UseSingleItem( "item_moon_shard", "-", npcBot, 0) then return; end
 	
 	-- Channeling OK:
 	local allyChannelingOrDying = allyChanneling;
@@ -321,6 +393,7 @@ function MyUtility.UseItems( _botStatus )
 		if  not lowEnnemy:IsStunned()  and  not lowEnnemy:IsRooted()  and  not lowEnnemy:IsMuted() then 
 			if MyUtility.UseSingleItem( "item_rod_of_atos", "modifier_rod_of_atos_debuff", lowEnnemy, 0) then return; end			
 			if MyUtility.UseSingleItem( "item_sheepstick", "modifier_sheepstick_debuff", lowEnnemy, 0) then return; end
+			if MyUtility.UseSingleItem( "item_heavens_halberd", "modifier_heavens_halberd_debuff", lowEnnemy, 0) then return; end
 		end
 	end
 	
@@ -350,7 +423,7 @@ function MyUtility.UseItems( _botStatus )
 	-------------------------------------
 	-- TP:
 	if bSafeToRegen then
-		local tp = MyUtility.IsItemAvailable("item_tpscroll");
+		local tp, tpCount, tpCharges = MyUtility.IsItemAvailable("item_tpscroll");
 		if tp ~= nil  and tp:IsFullyCastable() and  not npcBot:IsUsingAbility() then
 			--npcBot:ActionImmediate_Chat( "TP found" , true);
 		
@@ -360,14 +433,22 @@ function MyUtility.UseItems( _botStatus )
 				local destLane, dest = MyUtility.DestLane( botMode );	
 				if destLane ~= LANE_NONE and GetUnitToLocationDistance(npcBot, dest) > 6000 then
 					local infoStr = "TPing__"..botMode.."__"..botModeDesire;
-					--npcBot:ActionImmediate_Chat( infoStr , false);
+					--npcBot:ActionImmediate_Chat( infoStr , true);
 					--tp = MyUtility.IsItemAvailable("item_tpscroll");
 					--if tp ~= nil  and tp:IsFullyCastable() and  not npcBot:IsUsingAbility() then
-						local buyRes = npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );-- PURCHASE_ITEM_SUCCESS
-						if buyRes == PURCHASE_ITEM_SUCCESS then
+						local buyRes = PURCHASE_ITEM_SUCCESS;
+						local _tpTargetNb = 2;
+						if DotaTime() < MyUtility.const["laneEndT"] then
+							_tpTargetNb = 1;
+						end
+						if tpCount <= _tpTargetNb then 
+							buyRes = npcBot:ActionImmediate_PurchaseItem( "item_tpscroll" );  -- PURCHASE_ITEM_SUCCESS
+						elseif tpCharges >= _tpTargetNb then						
 							npcBot:Action_UseAbilityOnLocation(tp, dest);
 							return;
 						end
+						-- if buyRes == PURCHASE_ITEM_SUCCESS then
+						
 					--end
 					
 					-- if npcBot:GetGold() > 50 and not npcBot:IsChanneling() then
@@ -395,7 +476,17 @@ function MyUtility.AnalyseContext()
 	dominateCreepTarget = nil;
 	local creeps = npcBot:GetNearbyCreeps( MyUtility.const["maxCastRange"], true);
 	for _,creep in pairs(creeps) do
-		if string.find(creep:GetUnitName(),"siege")~=nil then
+		--if string.find(creep:GetUnitName(),"siege")~=nil then
+		if (string.find(creep:GetUnitName(),"troll")~=nil  
+			or  string.find(creep:GetUnitName(),"mud golem")~=nil
+			or  string.find(creep:GetUnitName(),"centaur")~=nil
+			or  string.find(creep:GetUnitName(),"wolf")~=nil
+			or  string.find(creep:GetUnitName(),"wildwing")~=nil
+			or  string.find(creep:GetUnitName(),"tormenter")~=nil  --satyr
+			or  string.find(creep:GetUnitName(),"hellbear")~=nil
+			)
+		-- and ((creep:GetMaxHealth() == 950)  or  (creep:GetMaxHealth() == 1100))  then  --Large neutrals
+		and (creep:GetMaxHealth() >= 600) then  --Large neutrals
 			dominateCreepTarget = creep;
 			break;
 		end
@@ -509,14 +600,31 @@ function MyUtility.AnalyseContext()
 	end		
 end
 
-itemsToSell = {
+itemsToSellEarly = {
 	"item_enchanted_mango",
 	"item_flask",
 	"item_clarity",
 	"item_tango",
+	"item_faerie_fire",
 	
 	"item_stout_shield",
 	"item_quelling_blade",
+	--"item_infused_raindrop",
+	
+	"item_branches",
+	"item_magic_stick",
+	
+	"item_circlet",
+	"item_gauntlets",
+	"item_slippers",
+	"item_mantle",
+	
+};
+itemsToSellLate = {
+	"item_magic_wand",	
+	--"item_bracer",	
+	"item_bottle",
+	
 };
 function MyUtility.MyPurchaseThink( tableItemsToBuy )
 
@@ -533,6 +641,7 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 	end
 
 	-- Check COURIER:
+	--[[
 	local itemCour = "item_courier";
 	if( GetItemStockCount(itemCour)>0 )then 
 		npcBot:ActionImmediate_PurchaseItem( itemCour );
@@ -540,16 +649,40 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 		--npcBot:ActionImmediate_Chat( infoStr, true);
 		print(infoStr);
 	end
+	--]]
 	
 	
 	local sNextItem = tableItemsToBuy[1];
 	
 	if (sNextItem == "DELIVER_NOW") then
-		if( IsCourierAvailable() )then
-			npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS );
-			table.remove( tableItemsToBuy, 1 );	
-		end
+		-- if( IsCourierAvailable() )then
+			-- npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS );
+			-- table.remove( tableItemsToBuy, 1 );	
+		-- end
 		
+		--for i = 0, GetNumCouriers()-1, 1 do
+		for i = 0, 4, 1 do
+			--local playerId = npcBot:GetPlayerID();
+			courier = GetCourier( i );
+			local stashVal = npcBot:GetStashValue();
+			if( 
+			npcBot:IsAlive()  and  
+			--stashVal>=50  and
+			--IsCourierAvailable()
+			GetCourierState( courier ) == COURIER_STATE_AT_BASE 
+			)
+			then
+				local logStr = "DELIVER NOW | COUR#" .. i;
+				print(logStr);
+				--npcBot:ActionImmediate_Chat( logStr , false);
+				npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS );  --  COURIER_ACTION_SECRET_SHOP
+			end
+		end			
+		
+		local logStr = "DELIVER NOW | END";
+		print(logStr);
+		--npcBot:ActionImmediate_Chat( logStr , false);
+		table.remove( tableItemsToBuy, 1 );			
 		return;		
 	end
 
@@ -557,18 +690,35 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 
 	
 	
-	-- SELL JUNK MIDGAME :
-	if npcBot:DistanceFromFountain() == 0  
-	and( DotaTime() > 60*20  or  npcBot:GetNetWorth() > 6000 )then
-		for _,itemName in ipairs(itemsToSell) do 
-			local item = MyUtility.HasItem( itemName );
-			if item~=nil then 
-				npcBot:ActionImmediate_SellItem( item ); 
-				local str = "Selling Junk = " .. itemName  ..  " - NetWorth = " .. npcBot:GetNetWorth();
-				npcBot:ActionImmediate_Chat( str, true);
-				print(str);
+	-- SELL JUNK MIDGAME / Drop Team Items in Base :
+	if npcBot:DistanceFromFountain() == 0  then
+		if( DotaTime() > MyUtility.const["laneEndT"]  or  npcBot:GetNetWorth() > 4500 )then
+			for _,itemName in ipairs(itemsToSellEarly) do 
+				local item = MyUtility.HasItem( itemName );
+				if item~=nil then 
+					npcBot:ActionImmediate_SellItem( item ); 
+					local str = "Selling Junk = " .. itemName  ..  " - NetWorth = " .. npcBot:GetNetWorth();
+					npcBot:ActionImmediate_Chat( str, true);
+					print(str);
+				end
 			end
 		end
+		
+		if( npcBot:GetNetWorth() > 7500 )then
+			for _,itemName in ipairs(itemsToSellLate) do 
+				local item = MyUtility.HasItem( itemName );
+				if item~=nil then 
+					npcBot:ActionImmediate_SellItem( item ); 
+					local str = "Selling Junk = " .. itemName  ..  " - NetWorth = " .. npcBot:GetNetWorth();
+					npcBot:ActionImmediate_Chat( str, true);
+					print(str);
+				end
+			end
+		end
+		
+		--if then
+			MyUtility.DropTeamItems();
+		--end
 	end
 	
 	
@@ -653,13 +803,18 @@ function MyUtility.MyPurchaseThink( tableItemsToBuy )
 		local result = npcBot:ActionImmediate_PurchaseItem( sNextItem );
 		if(result~=PURCHASE_ITEM_SUCCESS)then 			
 			local str = "ITEM PURCHASE : ERROR : " .. sNextItem;
-			npcBot:ActionImmediate_Chat( str, false);	
+			npcBot:ActionImmediate_Chat( str, true);	
 			print(str);
 			
+			if( sNextItem == "item_infused_raindrop") then
+				table.remove( tableItemsToBuy, 1 );			
+			end			
+			
 			--tableItemsToBuy = {};
-			for _,itemName in ipairs(tableItemsToBuy) do 
-				table.remove( tableItemsToBuy, 1 );	
-			end
+			--for _,itemName in ipairs(tableItemsToBuy) do 
+				--table.remove( tableItemsToBuy, 1 );	
+			--end
+			
 			-- if( IsCourierAvailable()  and  courier:DistanceFromFountain() < 2000 )then  -- npcBot:IsAlive()
 				-- npcBot:ActionImmediate_Courier( courier, COURIER_ACTION_SECRET_SHOP );  -- COURIER_ACTION_TAKE_AND_TRANSFER_ITEMS
 			-- end

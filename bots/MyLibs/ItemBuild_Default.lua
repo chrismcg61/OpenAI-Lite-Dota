@@ -293,68 +293,87 @@ item_yasha
 --]]
 
 
+
 ItemBuild_Default.items_Auras_1 = { 
 
 	"item_tango",
-	"item_flask",
-	--200g
+	--"item_tango",
+	-- "item_flask",
+	--90g
 	
-	"item_enchanted_mango",
 	"item_enchanted_mango",
 	--"item_enchanted_mango",
-	--340g
+	--160g
 	
 	"item_stout_shield", 
-	--540g	
+	--360g	
 	
 };
 ItemBuild_Default.items_Auras_2 = { 	
 	
-	"item_bottle",
+	-- Basi:
+	"item_sobi_mask",  --325g
+	-- "item_ring_of_protection",  --175g	
+	"DELIVER_NOW",
+	
+	-- "item_bottle",
 	"item_magic_stick",
 	
+	"item_ring_of_protection",  --175g	
+	
 	--Headdress:
-	"item_ring_of_regen",
+	-- "item_ring_of_regen",
 	-- "item_branches",
 	-- "item_recipe_headdress",
-	"DELIVER_NOW",	
+	-- "DELIVER_NOW",	
 	
-	-- Basi:
-	-- "item_sobi_mask",  --325g
-	-- "item_ring_of_protection",  --175g	
+	
+	"item_gauntlets",
+	"item_circlet",
+	"item_recipe_bracer",
+	
+	-- Wand Complete:	
+	"item_branches",
+	"item_branches",
+	"item_recipe_magic_wand",
+	
+	
 	
 	--Phase Boots:
-	"item_boots",
-	-- "item_chainmail",
-	-- "item_blades_of_attack",	
+	"item_chainmail",
+	"item_boots",	
+	"item_blades_of_attack",	
 };
-
 ItemBuild_Default.items_Auras_5 = { 
-	-- Helm Dom :
-	-- Headdress:
-	-- "item_ring_of_regen",
-	"item_branches",
-	"item_recipe_headdress",	
-	"DELIVER_NOW",	
-	"item_ring_of_health",	
-	"item_gloves",			
-	
+
 	-- Vlads:
-	"item_ring_of_protection",	
-	"item_sobi_mask",
+	-- "item_ring_of_protection",	
+	-- "item_sobi_mask",
 	"item_lifesteal",	
 	"item_recipe_vladmir",	
 	
+	-- Helm Dom :
+	-- Headdress:
+	"item_ring_of_regen",
+	"item_recipe_headdress",	
+	"item_branches",
+	"DELIVER_NOW",	
+	"item_ring_of_health",	
+	"item_gloves",	
+	"item_recipe_helm_of_the_dominator",	
+	
+	
+	
 	--Phase Boots:
 	-- "item_boots",
-	"item_chainmail",
-	"item_blades_of_attack",	
+	-- "item_chainmail",
+	-- "item_blades_of_attack",	
 		
 	-- Drums
-	"item_crown",
-	"item_wind_lace",
-	"item_sobi_mask",	
-	"item_recipe_ancient_janggo",
+	-- "item_crown",
+	-- "item_wind_lace",
+	-- "item_sobi_mask",	
+	-- "item_recipe_ancient_janggo",
 	
 	-- AC :
 	"item_hyperstone",
@@ -363,23 +382,67 @@ ItemBuild_Default.items_Auras_5 = {
 	"item_recipe_assault",	
 };
 
-
-ItemBuild_Default.items_Carry_Melee_1 = { 
-
-	"item_stout_shield",
-	--200g
+ItemBuild_Default.items_Carry_0 = { 
 	
 	"item_branches",
 	"item_branches",
-	--300g
+	-- "item_circlet",
+	-- "item_gauntlets",
+	--100g
+};
 
+ItemBuild_Default.items_Carry_Bottle_1 = { 
+	"item_circlet",
+	"item_gauntlets",
+	
+	-- "item_clarity", "item_clarity",
+	-- "item_enchanted_mango",
+	"item_faerie_fire",
+	"item_bottle",
+};
+ItemBuild_Default.items_Carry_Ranged_1 = { 
+	--"item_blight_stone",
+	-- "item_faerie_fire",	
+
+	"item_tango",
+	--90g
+	
+	"item_circlet",
+	"item_gauntlets",
+};
+ItemBuild_Default.items_Carry_Melee_1 = { 
+	"item_stout_shield",
+	--200g
+	
+	"item_tango",
+	"item_tango",
+	--380g
+	
+	"item_circlet",
+	"item_gauntlets",
 };
 
 ItemBuild_Default.items_Carry_Melee_1a_Hp = { 
-	--"item_flask",
-	"item_tango",
-	"item_tango",
-	--180g
+	--"item_flask",		
+	
+	-- "item_blight_stone",	
+	
+	-- Magic Stick
+	"item_magic_stick",			
+	-- Wand Complete:	
+	"item_recipe_magic_wand",
+	"DELIVER_NOW",
+	
+	-- Basi:
+	"item_ring_of_protection",	
+	"item_sobi_mask",	
+	
+	-- "item_infused_raindrop",	
+	
+	-- BKB :
+	-- "item_mithril_hammer",
+	-- "item_ogre_axe",
+	-- "item_recipe_black_king_bar",	
 };
 ItemBuild_Default.items_Carry_Melee_1a_Mana = { 
 	"item_enchanted_mango",
@@ -399,44 +462,28 @@ ItemBuild_Default.items_Carry_Melee_2_Quelling = {
 	
 	"item_blight_stone",
 };
-ItemBuild_Default.items_Carry_Melee_2_Stats_Str = { 
-
-	-- 2x Bracers
+ItemBuild_Default.items_Carry_Melee_2_Stats_Str = { 	
+	-- Bracers Complete
+	-- "item_circlet",
 	"item_gauntlets",
-	"item_gauntlets",
-	
-	-- Magic Stick
-	"item_magic_stick",
-	
-	"item_circlet",
 	"item_recipe_bracer",
-	
-	"item_circlet",
-	"item_recipe_bracer",
-
 };
-ItemBuild_Default.items_Carry_Melee_2_Stats_Agi = { 
-	-- Magic Stick
-	"item_magic_stick",
+ItemBuild_Default.items_Carry_Melee_2_Stats_Agi = { 	
+	-- Wraith Bands Complete
+	-- "item_circlet",
+	-- "item_slippers",
+	-- "item_recipe_wraith_band",	
 	
-	-- 2x Wraith Bands
-	"item_circlet",
-	"item_circlet",
-	
-	"item_slippers",
-	"item_recipe_wraith_band",
-	
-	"item_slippers",
-	"item_recipe_wraith_band",	
+	-- Bracers Complete
+	-- "item_circlet",
+	"item_gauntlets",
+	"item_recipe_bracer",
 };
 
-ItemBuild_Default.items_Carry_Melee_3 = { 
-
-	-- Wand Complete:	
-	--"item_magic_stick",
-	"item_recipe_magic_wand",
-	
+ItemBuild_Default.items_Carry_Melee_3 = { 	
 	"item_boots",
+	
+	"item_infused_raindrop",	
 };
 
 ItemBuild_Default.items_Carry_Melee_4_PhaseBoots = { 
@@ -459,8 +506,8 @@ ItemBuild_Default.items_Carry_Melee_4a_Vlads = {
 ItemBuild_Default.items_Carry_Melee_4a_HelmDom = { 
 	-- Headdress:
 	"item_ring_of_regen",
-	"item_branches",
 	"item_recipe_headdress",
+	"item_branches",
 	
 	"item_gloves",		
 	"item_ring_of_health",
@@ -478,6 +525,23 @@ ItemBuild_Default.items_Carry_Melee_5_MomBasher = {
 	"item_recipe_basher",
 					
 };
+ItemBuild_Default.items_Carry_Ranged_5_DragonLance_Deso = { 
+	
+	-- DL :
+	"item_ogre_axe",
+	"item_boots_of_elves",
+	"item_boots_of_elves",
+	
+	-- Maelstrom :
+	-- "item_mithril_hammer",
+	-- "item_javelin",
+	
+	-- Desolator :
+	-- "item_mithril_hammer",
+	-- "item_mithril_hammer",
+	-- "item_blight_stone",
+					
+};
 
 ItemBuild_Default.items_Carry_Melee_6 = { 
 	
@@ -487,31 +551,104 @@ ItemBuild_Default.items_Carry_Melee_6 = {
 	"item_recipe_black_king_bar",				
 					
 	-- Desolator :
-	"item_mithril_hammer",
-	"item_mithril_hammer",
-	"item_blight_stone",	
+	-- "item_mithril_hammer",
+	-- "item_mithril_hammer",
+	-- "item_blight_stone",	
 	
 	--MKB:
-	"item_demon_edge",
+	"item_demon_edge",	
 	"item_javelin",
 	"item_quarterstaff",
+	
+	--Moon Shard:
+	"item_hyperstone",
+	"item_hyperstone",
 				
+};
+
+
+ItemBuild_Default.items_Carry_5_PreBkb_Dmg = { 
+
+	-- MoM :
+	"item_lifesteal",
+	"item_quarterstaff",
+
+	--MKB:
+	-- "item_quarterstaff",
+	-- "item_javelin",
+	-- "item_demon_edge",		
+	
+	-- Maelstrom :
+	-- "item_mithril_hammer",
+	-- "item_javelin",
+	
+	-- Desolator :
+	-- "item_mithril_hammer",
+	-- "item_mithril_hammer",
+	-- "item_blight_stone",	
+	
+	-- SB :
+	-- "item_claymore",
+	-- "item_shadow_amulet",	
+					
+};
+ItemBuild_Default.items_Carry_6_Bkb_Late = { 
+	
+	-- BKB :
+	"item_mithril_hammer",
+	"item_ogre_axe",
+	"item_recipe_black_king_bar",	
+		
+	-- S&Y :
+	"item_ogre_axe",
+	"item_belt_of_strength",
+	"item_recipe_sange",	
+	
+	"item_boots_of_elves",	
+	"item_blade_of_alacrity",	
+	"item_recipe_yasha",	
+	
+	
+	--MKB Complete:
+	"item_demon_edge",	
+	"item_javelin",
+	"item_quarterstaff",
+	
+	
+	--- UPGRADES :
+	-- Mjollnir :
+	-- "item_hyperstone",
+	-- "item_recipe_mjollnir",		
+	
+	-- -- Silver Edge :
+	-- "item_claymore",
+	-- "item_shadow_amulet",		
+	-- "item_ultimate_orb",
+	-- "item_recipe_silver_edge",
+	
+	
+	-- Satanic :
+	"item_reaver",
+	"item_claymore",
+	"item_lifesteal",
+	
+	
+					
 };
 
 
 
 
-ItemBuild_Default.items_Caster_1 = { 
-	
+ItemBuild_Default.items_Caster_0 = { 	
 	--"item_enchanted_mango",
 	"item_enchanted_mango",
 	"item_enchanted_mango",
 	--140g
-	
+};
+ItemBuild_Default.items_Caster_1 = { 		
 	"item_branches",
 	"item_branches",
-	--240g
-
+	--100g
 };
 ItemBuild_Default.items_Caster_1a_Clarity = { 
 	--2x Clarity
@@ -527,7 +664,6 @@ ItemBuild_Default.items_Caster_1a_ClaritySalve = {
 	"item_clarity",
 	"item_flask",	
 };
-
 ItemBuild_Default.items_Caster_2 = { 
 
 	-- Sage Mask:
@@ -550,7 +686,6 @@ ItemBuild_Default.items_Caster_2 = {
 	-- "item_infused_raindrop",	
 
 };
-
 ItemBuild_Default.items_Caster_3_ManaBoots = { 
 
 	"item_energy_booster",	
@@ -562,7 +697,6 @@ ItemBuild_Default.items_Caster_3_TranquilBoots = {
 	"item_ring_of_regen",
 
 };
-
 ItemBuild_Default.items_Caster_4 = { 
 
 	-- Drums
@@ -605,6 +739,165 @@ ItemBuild_Default.items_Caster_4 = {
 };
 
 
+ItemBuild_Default.items_TankAuras_1 = { 
+	
+	"item_stout_shield", 
+
+	"item_tango",	"item_tango",	"item_tango",
+	-- "item_flask",
+	--470g
+	
+	-- "item_branches",
+	-- "item_branches",	
+	-- "item_branches",
+	---------------------
+	"item_magic_stick",	
+	
+	"item_ring_of_regen",
+	"DELIVER_NOW",		
+	
+	"item_gauntlets",
+	"item_gauntlets",	
+			
+	-- Wand Complete:	
+	"item_branches",
+	"item_branches",	
+	"item_recipe_magic_wand",	
+	"DELIVER_NOW",	
+
+	-- "item_ring_of_protection",
+	
+	--Headdress:
+	-- "item_ring_of_regen",
+	"item_branches",
+	"item_recipe_headdress",
+	"DELIVER_NOW",
+	
+	-- "item_infused_raindrop",
+	-- "item_chainmail",		
+
+	"item_boots",		
+	
+	--------------------------------------
+	--COMPLETE:
+	--Bracer:
+	-- "item_gauntlets",
+	"item_circlet",
+	"item_recipe_bracer",
+	"DELIVER_NOW",	
+	
+	-- Helm Dom :
+	"item_ring_of_health",	
+	"item_recipe_helm_of_the_dominator",
+	"DELIVER_NOW",	
+	"item_gloves",	
+	
+	-- Basi :
+	"item_ring_of_protection",  --175g	
+	"item_sobi_mask",  --325g	
+	
+	-- Phase Boots:
+	-- "item_boots",	
+	"item_blades_of_attack",	
+	"item_chainmail",		
+	
+	
+	----------------------------------------------------
+	-- "item_chainmail",
+	
+	-- Vlads:
+	-- "item_ring_of_protection",	
+	-- "item_sobi_mask",
+	"item_lifesteal",	
+	"item_recipe_vladmir",	
+	
+	-- AC :
+	"item_platemail",
+	"item_hyperstone",	
+	"item_chainmail",
+	"item_recipe_assault",	
+	
+	-- Radiance:
+	"item_relic",
+	"item_recipe_radiance",
+	
+};
+ItemBuild_Default.items_HardSupport_1 = { 	
+	"item_enchanted_mango",
+	"item_enchanted_mango",
+	--"item_flask",
+	"item_clarity",  "item_clarity", "item_clarity",
+	
+	"item_branches",  
+	"item_branches",
+	
+	"item_circlet",
+	--505g
+	
+	"item_bottle",	
+	
+	--Complete Wand:
+	"item_magic_stick",
+	"item_recipe_magic_wand",	
+	"DELIVER_NOW",
+	
+	"item_boots",		
+	
+	"item_infused_raindrop",
+	"item_wind_lace",
+	
+	
+	---------------------------	
+	--Complete Bracers:
+	"item_gauntlets", "item_recipe_bracer",
+	"DELIVER_NOW",	
+	-- "item_circlet", "item_recipe_bracer",
+	
+	--Complete ManaBoots:
+	"item_energy_booster",
+	
+	--Complete Drums:
+	"item_crown",
+	"DELIVER_NOW",	
+	"item_sobi_mask",	
+	"item_recipe_ancient_janggo",
+	
+	-- Glimmer
+	"item_shadow_amulet",
+	"item_cloak",
+	
+	
+	---------------------------
+	-- Atos :
+	"item_crown",
+	"item_crown",		
+	"item_staff_of_wizardry",	
+	"item_recipe_rod_of_atos",
+		
+	--Sheep:				
+	"item_mystic_staff",	
+	"item_void_stone",	
+	"item_ultimate_orb",	
+	
+	-- Octarine :
+	-- "item_point_booster",
+	-- "item_vitality_booster",
+	-- "item_energy_booster",
+	-- "item_mystic_staff",	
+	
+	-- Aghs :
+	"item_point_booster",
+	"item_ogre_axe",
+	"item_staff_of_wizardry",						
+	"item_blade_of_alacrity",	
+	
+};
+
+function ItemBuild_Default.InitTable_TankAuras( heroItems )
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_TankAuras_1 );	
+	
+	LogItemBuild( "'Tank_Auras'" );
+end
 function ItemBuild_Default.InitTable_Auras( heroItems )
 	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Auras_1 );	
 	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Auras_2 );	
@@ -617,7 +910,7 @@ function ItemBuild_Default.InitTable_Auras( heroItems )
 	-- Log :
 	LogItemBuild( "'Auras'" );
 end
-function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode, manaMode )
+function ItemBuild_Default.InitTable_Carry_Melee_OLD( heroItems, statsMode, auraMode, manaMode )
 	
 	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1 );
 	
@@ -659,16 +952,120 @@ function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode
 	
 	return heroItems;
 end
+function ItemBuild_Default.InitTable_Carry_Ranged_OLD( heroItems, statsMode, auraMode, manaMode )
+	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Ranged_1 );
+	
+	if manaMode==1 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Mana );
+	else
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Hp );
+	end	
+	
+	
+	if statsMode==0 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Quelling );
+	end
+	if statsMode==1 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Str );
+	end
+	if statsMode==2 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Agi );
+	end
+		
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PowerTreads );
+	
+	if auraMode~=nil then
+		if auraMode==1 then
+			MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_Vlads );
+		end
+		if auraMode==2 then
+			MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4a_HelmDom );
+		end
+	end
+	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Ranged_5_DragonLance_Deso );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_6 );
+	
+	
+	-- Log :
+	LogItemBuild( "'Carry_Ranged'" );
+	
+	return heroItems;
+end
+
+function ItemBuild_Default.InitTable_Carry_Melee( heroItems, statsMode, auraMode, manaMode )
+	ItemBuild_Default.InitTable_Carry_Generic( heroItems, 0, statsMode, 0 );
+end
+function ItemBuild_Default.InitTable_Carry_Ranged( heroItems, statsMode, auraMode, manaMode )
+	ItemBuild_Default.InitTable_Carry_Generic( heroItems, 1, statsMode, 1 );
+end
+function ItemBuild_Default.InitTable_Carry_Generic( heroItems, rangeMode, statsMode, bootsMode )
+		
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_0 );
+		
+	if rangeMode==0 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1 );		
+	end	
+	if rangeMode==1 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Ranged_1 );
+	end
+	if rangeMode==2 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Bottle_1 );
+	end
+	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_1a_Hp );
+	
+	
+	if statsMode==0 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Quelling );
+	end
+	if statsMode==1 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Str );
+	end
+	if statsMode==2 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_2_Stats_Agi );
+	end
+		
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_3 );	
+	
+	if bootsMode==1 then
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PowerTreads );
+	else
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_Melee_4_PhaseBoots );		
+	end	
+	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_5_PreBkb_Dmg );
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Carry_6_Bkb_Late );
+	
+	
+	-- Log :
+	LogItemBuild( "'Carry_Generic'" );
+	
+	return heroItems;
+end
+
+function ItemBuild_Default.InitTable_HardSupport( heroItems )
+	
+
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_HardSupport_1 );
+	
+	-- Log :
+	LogItemBuild( "'HardSup'" );
+	
+	return heroItems;
+end
 function ItemBuild_Default.InitTable_Caster_ManaBoots( heroItems, regenMode )
 	
-	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1 );
-	
 	if regenMode~=nil and regenMode==1 then
-		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Salve );	
+		--
 	else
-		--MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Clarity );	
-		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_ClaritySalve );			
+		MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_0 );	
 	end
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1 );
+	--MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_Salve );	
+	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_1a_ClaritySalve );		
 	
 	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_2 );
 	MyUtility.ConcatLists( heroItems, ItemBuild_Default.items_Caster_3_ManaBoots );

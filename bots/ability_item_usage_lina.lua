@@ -40,6 +40,10 @@ contexts = {};
 -- special_bonus_unique_lina_2
 abilitiesEarlyLvls = {  "lina_dragon_slave",  "lina_fiery_soul", "lina_dragon_slave", "lina_light_strike_array",};
 abilitiesPriority = {  "lina_laguna_blade",  "lina_dragon_slave", "lina_fiery_soul",  "lina_light_strike_array"};
+
+talents = {"special_bonus_attack_damage_35","special_bonus_cast_range_100","special_bonus_hp_350","special_bonus_spell_amplify_14","special_bonus_attack_range_175",  "special_bonus_unique_lina","special_bonus_unique_lina_1","special_bonus_unique_lina_2","special_bonus_unique_lina_3","special_bonus_unique_lina_4"};
+bTalents = {0,0,0,0};
+
 AoeID = "LINA_Q";
 AoeID2 = "LINA_W";
 AoeID_Configs = {
@@ -154,6 +158,10 @@ function ItemUsageThink()
 	MyUtility.UseItems(botStatus);
 end
 
+function CourierUsageThink()
+	MyUtility.UseCour();
+end
+
 function AbilityUsageThink()	
 
 	initBotMode = OpenAI_Ability_Custom.Init_Intel(initBotMode, InitTable);
@@ -178,6 +186,8 @@ function AbilityLevelUpThink()
 			return;
 		end
 	end
+	
+	MyGenericAbility.TalentLvl(npcBot, bTalents, talents);
 	
 	listLength = table.getn( abilitiesPriority );		
 	for i=1,listLength,1 do
